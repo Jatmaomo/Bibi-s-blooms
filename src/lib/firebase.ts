@@ -401,23 +401,12 @@ export function subscribeToReviews(
         });
       });
 
-      if (list.length === 0) {
-        onUpdate(STARTER_REVIEWS);
-      } else {
-        // Merge Firestore reviews with starter reviews so testimonials remain rich and vibrant
-        const existingIds = new Set(list.map((r) => r.id));
-        const combined = [...list];
-        for (const starter of STARTER_REVIEWS) {
-          if (!existingIds.has(starter.id)) {
-            combined.push(starter);
-          }
-        }
-        onUpdate(combined);
-      }
+      // Only return real customer reviews from Firestore (no fake reviews)
+      onUpdate(list);
     },
     (err) => {
       console.warn('Firestore Reviews subscription notice:', err);
-      onUpdate(STARTER_REVIEWS);
+      onUpdate([]);
       if (onError) onError(err);
     }
   );

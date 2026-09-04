@@ -1,6 +1,6 @@
 {
   "name": "Bibi's Blooms - Men's Fashion",
-  "description": "Clean, elegant, and professional men's fashion catalog and real-time admin management for Bibi's Blooms. Love, Joy and Blooms... ♥",
+  "description": "Bibi's Blooms - Gentlemen's plug for the everyday man who loves to look good. Quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags. Love, Joy and Blooms... ♥",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

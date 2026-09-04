@@ -86,8 +86,8 @@ export const Logo: React.FC<LogoProps> = ({
         >
           Bibi's Blooms
         </span>
-        <span className="relative text-[10px] sm:text-xs text-zinc-300 font-semibold uppercase tracking-[0.25em] mt-0.5">
-          Men's Fashion Wears
+        <span className="relative text-[10px] sm:text-xs text-[#d6b268] font-bold uppercase tracking-[0.28em] mt-0.5 drop-shadow-[0_0_8px_rgba(197,160,89,0.35)]">
+          Gentlemen&apos;s Plug
         </span>
         {showTagline && (
           <span className="relative text-[11px] sm:text-xs text-[#c5a059] font-medium tracking-wider italic mt-1 opacity-95 drop-shadow-[0_0_8px_rgba(197,160,89,0.4)]">

@@ -32,8 +32,14 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Main Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-luxury text-white uppercase tracking-[0.08em] sm:tracking-[0.12em] mb-5 drop-shadow-sm leading-tight max-w-4xl mx-auto">
+        {/* Main Headline in modern Outfit font and luxury gold with aura */}
+        <h1
+          className="text-3xl sm:text-5xl md:text-6xl font-black font-['Outfit',sans-serif] uppercase tracking-[0.04em] sm:tracking-[0.06em] mb-5 leading-tight max-w-4xl mx-auto text-[#c5a059] drop-shadow-[0_0_20px_rgba(197,160,89,0.55)]"
+          style={{
+            textShadow:
+              '0 0 20px rgba(197, 160, 89, 0.6), 0 0 42px rgba(197, 160, 89, 0.35)',
+          }}
+        >
           Hello handsome you are about to look so good
         </h1>
 
@@ -45,12 +51,12 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
         </p>
 
-        {/* Action Buttons */}
+        {/* Action Buttons (Strictly Black and Gold) */}
         <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
           <button
             id="hero-shop-now-btn"
             onClick={() => onNavigate('shop')}
-            className="w-full sm:w-auto px-8 py-3.5 rounded-md bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-sm tracking-widest uppercase transition-all duration-200 shadow-[0_0_25px_rgba(197,160,89,0.3)] flex items-center justify-center gap-2.5 group"
+            className="w-full sm:w-auto px-8 py-3.5 rounded-md bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-sm tracking-widest uppercase transition-all duration-200 shadow-[0_0_25px_rgba(197,160,89,0.35)] flex items-center justify-center gap-2.5 group"
           >
             <span>SHOP WEARS</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -60,9 +66,9 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             href={`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent("Hi Bibi, I’d like to shop for some wears.")}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-zinc-900/90 hover:bg-zinc-800 text-zinc-200 hover:text-white border border-zinc-700/80 hover:border-[#c5a059] text-sm tracking-widest uppercase transition-all duration-200 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-md bg-black/80 hover:bg-zinc-900 text-[#c5a059] hover:text-[#d6b268] border border-[#c5a059]/50 hover:border-[#c5a059] text-sm tracking-widest uppercase transition-all duration-200 flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(197,160,89,0.15)]"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-400" />
+            <MessageCircle className="w-4 h-4 text-[#c5a059]" />
             <span>Order on WhatsApp</span>
           </a>
         </div>
