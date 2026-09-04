@@ -41,7 +41,11 @@ export const ContactPage: React.FC = () => {
           GET IN TOUCH
         </h1>
         <p className="text-sm text-zinc-400 mt-2 max-w-md">
-          Reach out directly to Bibi&apos;s Blooms to shop for ready-to-wear wears, ask about available sizes, or arrange delivery.
+          Reach out directly to{' '}
+          <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+            Bibi&apos;s Blooms
+          </span>{' '}
+          to shop for ready-to-wear wears, ask about available sizes, or arrange delivery.
         </p>
         <div className="w-16 h-0.5 bg-[#c5a059] mt-4" />
       </div>
@@ -50,7 +54,7 @@ export const ContactPage: React.FC = () => {
         {/* Left Column: Direct Contact Info */}
         <div className="bg-[#121318] border border-zinc-800 rounded-xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-6">
-            <h2 className="text-xl font-bold font-luxury text-white">
+            <h2 className="text-xl font-bold font-luxury text-[#c5a059] drop-shadow-[0_0_12px_rgba(197,160,89,0.55)] [text-shadow:0_0_16px_rgba(197,160,89,0.4)]">
               Bibi&apos;s Blooms
             </h2>
 

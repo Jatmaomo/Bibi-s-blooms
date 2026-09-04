@@ -154,7 +154,11 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
               <div className="flex items-start gap-2.5 p-3 rounded-lg bg-zinc-900/60 border border-zinc-800 text-xs text-zinc-400">
                 <ShieldCheck className="w-4 h-4 text-[#c5a059] flex-shrink-0 mt-0.5" />
                 <span>
-                  Authentic Bibi's Blooms ready-to-wear piece. All items are premium ready-made garments, ready for immediate dispatch (wears, not sewing).
+                  Authentic{' '}
+                  <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+                    Bibi&apos;s Blooms
+                  </span>{' '}
+                  ready-to-wear piece. All items are premium ready-made garments, ready for immediate dispatch (wears, not sewing).
                 </span>
               </div>
             </div>

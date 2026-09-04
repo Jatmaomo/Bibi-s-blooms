@@ -147,7 +147,11 @@ export const ReviewsPage: React.FC = () => {
           CUSTOMER REVIEWS
         </h1>
         <p className="text-sm sm:text-base text-zinc-400 mt-2 max-w-2xl">
-          Authentic feedback from gentlemen wearing Bibi's Blooms luxury ready-to-wear menswear. All pieces are ready-made garments ready for prompt delivery.
+          Authentic feedback from gentlemen wearing{' '}
+          <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+            Bibi&apos;s Blooms
+          </span>{' '}
+          luxury ready-to-wear menswear. All pieces are ready-made garments ready for prompt delivery.
         </p>
         <div className="w-20 h-0.5 bg-[#c5a059] mt-4" />
       </div>

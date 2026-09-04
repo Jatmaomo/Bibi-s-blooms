@@ -22,29 +22,27 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           <Logo size="hero" orientation="vertical" showTagline={false} />
         </div>
 
-        {/* Brand Tagline & Ready-to-Wear Badge */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#c5a059]/40 bg-[#c5a059]/5">
-            <Sparkles className="w-3.5 h-3.5 text-[#c5a059]" />
-            <span className="text-xs sm:text-sm font-serif italic text-[#c5a059] tracking-wider">
+        {/* Brand Tagline */}
+        <div className="mb-6">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-[#c5a059]/40 bg-[#c5a059]/10 shadow-[0_0_20px_rgba(197,160,89,0.25)] backdrop-blur-sm">
+            <Sparkles className="w-3.5 h-3.5 text-[#c5a059] animate-pulse" />
+            <span className="text-xs sm:text-sm font-serif italic text-[#c5a059] tracking-wider drop-shadow-[0_0_10px_rgba(197,160,89,0.4)]">
               &ldquo;Love, Joy and Blooms... ♥&rdquo;
             </span>
-          </div>
-
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/30 text-emerald-400 text-xs font-semibold tracking-wide">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Ready-To-Wear Wears (Ready for Delivery, Not Sewing)</span>
           </div>
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-luxury text-white uppercase tracking-[0.1em] sm:tracking-[0.15em] mb-4 drop-shadow-sm leading-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-luxury text-white uppercase tracking-[0.08em] sm:tracking-[0.12em] mb-5 drop-shadow-sm leading-tight max-w-4xl mx-auto">
           Hello handsome you are about to look so good
         </h1>
 
         {/* Subtitle / Positioning */}
         <p className="max-w-2xl text-sm sm:text-base md:text-lg text-zinc-300 font-normal leading-relaxed mb-10">
-          Bibi’s blooms is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+          <span className="text-[#c5a059] font-bold drop-shadow-[0_0_12px_rgba(197,160,89,0.6)] [text-shadow:0_0_14px_rgba(197,160,89,0.45)]">
+            Bibi’s blooms
+          </span>{' '}
+          is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
         </p>
 
         {/* Action Buttons */}

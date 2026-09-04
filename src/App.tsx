@@ -214,7 +214,11 @@ export default function App() {
                     Immediate Dispatch Ready Wears
                   </h3>
                   <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-                    No waiting weeks for tailors or dealing with sewing delays. Every piece at Bibi’s Blooms is a premium ready-made wear—roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury native wear—ready for swift delivery to your doorstep.
+                    No waiting weeks for tailors or dealing with sewing delays. Every piece at{' '}
+                    <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+                      Bibi’s Blooms
+                    </span>{' '}
+                    is a premium ready-made wear—roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury native wear—ready for swift delivery to your doorstep.
                   </p>
                 </div>
 

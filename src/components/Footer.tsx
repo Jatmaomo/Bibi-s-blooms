@@ -22,7 +22,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
           <div className="md:col-span-2 space-y-4">
             <Logo size="md" showTagline={true} onClick={() => onNavigate('home')} />
             <p className="max-w-md text-xs leading-relaxed text-zinc-400">
-              Bibi’s blooms is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+              <span className="text-[#c5a059] font-bold drop-shadow-[0_0_10px_rgba(197,160,89,0.55)] [text-shadow:0_0_12px_rgba(197,160,89,0.4)]">
+                Bibi’s blooms
+              </span>{' '}
+              is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
@@ -91,7 +94,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
         {/* Bottom copyright & Back to top */}
         <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
           <p>
-            &copy; {new Date().getFullYear()} Bibi&apos;s Blooms. All rights reserved. &ldquo;Love, Joy and Blooms... ♥&rdquo;
+            &copy; {new Date().getFullYear()}{' '}
+            <span className="text-[#c5a059] font-semibold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+              Bibi&apos;s Blooms
+            </span>
+            . All rights reserved. &ldquo;Love, Joy and Blooms... ♥&rdquo;
           </p>
 
           <button

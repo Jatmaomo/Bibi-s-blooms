@@ -59,7 +59,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             The Collection
           </span>
           <h1 className="text-3xl sm:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1">
-            Shop Bibi&apos;s Blooms
+            Shop <span className="text-[#c5a059] drop-shadow-[0_0_15px_rgba(197,160,89,0.6)] [text-shadow:0_0_20px_rgba(197,160,89,0.4)]">Bibi&apos;s Blooms</span>
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-xl">
             Good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury wears. Ready for immediate dispatch.

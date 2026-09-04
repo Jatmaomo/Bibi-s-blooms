@@ -12,14 +12,17 @@ export const AboutPage: React.FC = () => {
           Love, Joy and Blooms... ♥
         </span>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-luxury text-white tracking-wider">
-          ABOUT BIBI&apos;S BLOOMS
+          ABOUT <span className="text-[#c5a059] drop-shadow-[0_0_15px_rgba(197,160,89,0.55)] [text-shadow:0_0_20px_rgba(197,160,89,0.4)]">BIBI&apos;S BLOOMS</span>
         </h1>
         <div className="w-16 h-0.5 bg-[#c5a059] mt-4" />
       </div>
 
       <div className="bg-[#121318] border border-zinc-800 rounded-xl p-8 sm:p-12 shadow-xl space-y-6 text-zinc-300 leading-relaxed">
         <p className="text-base sm:text-lg text-zinc-200 leading-relaxed font-light">
-          <strong className="text-white font-semibold">Bibi’s blooms</strong> is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+          <strong className="text-[#c5a059] font-bold drop-shadow-[0_0_12px_rgba(197,160,89,0.55)] [text-shadow:0_0_14px_rgba(197,160,89,0.4)]">
+            Bibi’s blooms
+          </strong>{' '}
+          is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
         </p>
 
         <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
@@ -55,7 +58,7 @@ export const AboutPage: React.FC = () => {
         <div className="pt-6 border-t border-zinc-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
             <h4 className="text-sm font-bold text-white uppercase tracking-wider">
-              Experience Bibi&apos;s Blooms
+              Experience <span className="text-[#c5a059] drop-shadow-[0_0_10px_rgba(197,160,89,0.5)]">Bibi&apos;s Blooms</span>
             </h4>
             <p className="text-xs text-zinc-400 mt-0.5">
               Browse our ready-to-wear wears catalog or chat directly with Bibi.
