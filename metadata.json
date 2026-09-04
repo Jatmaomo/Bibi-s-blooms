@@ -1,0 +1,6 @@
+{
+  "name": "Bibi's Blooms - Men's Fashion",
+  "description": "Clean, elegant, and professional men's fashion catalog and real-time admin management for Bibi's Blooms. Love, Joy and Blooms... ♥",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

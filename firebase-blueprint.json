@@ -1,0 +1,94 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Men's fashion product item in Bibi's Blooms catalog",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name or title of the garment"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed description of the style, cut, and fabric"
+        },
+        "price": {
+          "type": "number",
+          "description": "Price in Nigerian Naira (NGN)"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category such as Senator Wear, Agbada, Kaftan, Native Wear, etc."
+        },
+        "image_url": {
+          "type": "string",
+          "description": "Public URL of the product photograph"
+        },
+        "sizes": {
+          "type": "array",
+          "description": "Available clothing sizes"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether the piece is highlighted on the home page showcase"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "ISO timestamp of product creation"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "ISO timestamp of last product modification"
+        }
+      },
+      "required": ["name", "price", "category", "image_url"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Customer testimonial and review for Bibi's Blooms ready-to-wear pieces",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "Name of the customer providing the review"
+        },
+        "rating": {
+          "type": "number",
+          "description": "Star rating from 1 to 5"
+        },
+        "comment": {
+          "type": "string",
+          "description": "Review comment and customer feedback"
+        },
+        "wearPurchased": {
+          "type": "string",
+          "description": "The ready-to-wear item or category purchased"
+        },
+        "location": {
+          "type": "string",
+          "description": "City or country of the customer"
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Whether this is a verified buyer review"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "ISO timestamp of review submission"
+        }
+      },
+      "required": ["customerName", "rating", "comment"]
+    }
+  },
+  "firestore": {
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Collection of all menswear products available in the Bibi's Blooms catalog"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Collection of customer reviews and ratings for Bibi's Blooms ready-to-wear wears"
+    }
+  }
+}
