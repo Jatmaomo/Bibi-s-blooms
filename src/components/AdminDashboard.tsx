@@ -176,7 +176,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     }
 
     if (entered !== ADMIN_FIXED_PASSCODE) {
-      setPasscodeError('Incorrect password. The authorized admin password is 123456789.');
+      setPasscodeError('Incorrect password. Access denied.');
       return;
     }
 
@@ -311,7 +311,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
     const isAuthorized = isAdminUnlocked || currentUser !== null || demoMode;
     if (!isAuthorized) {
-      setFormError('Admin authentication required: Please enter password 123456789 to log in.');
+      setFormError('Admin authentication required: Please log in with the admin password.');
       return;
     }
 
@@ -359,7 +359,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     if (!deletingProduct) return;
     const isAuthorized = isAdminUnlocked || currentUser !== null || demoMode;
     if (!isAuthorized) {
-      showNotification('Admin authentication required: Please enter password 123456789 to log in.', 'error');
+      showNotification('Admin authentication required: Please log in with the admin password.', 'error');
       setDeletingProduct(null);
       return;
     }
@@ -419,7 +419,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               ADMIN LOG IN
             </h1>
             <p className="text-xs text-zinc-400 max-w-sm mx-auto leading-relaxed">
-              Enter the authorized admin secret code to log in and upload or manage products in the catalog.
+              Enter your private admin password to log in and upload or manage products in the catalog.
             </p>
           </div>
 
@@ -428,19 +428,8 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-xs font-bold uppercase tracking-wider text-zinc-300">
-                  Admin Password / Secret Code
+                  Admin Password
                 </label>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setPasscode(ADMIN_FIXED_PASSCODE);
-                    setPasscodeError(null);
-                  }}
-                  className="text-[11px] text-[#c5a059] hover:underline font-mono"
-                  title="Click to fill authorized code"
-                >
-                  Code: 123456789
-                </button>
               </div>
 
               <div className="relative">
@@ -451,29 +440,27 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                   type={showPasscode ? 'text' : 'password'}
                   required
                   autoFocus
-                  placeholder="Enter secret code (123456789)..."
+                  placeholder="••••••••••••"
                   value={passcode}
                   onChange={(e) => {
                     setPasscode(e.target.value);
                     if (passcodeError) setPasscodeError(null);
                   }}
-                  className="w-full pl-10 pr-11 py-3 bg-black border border-zinc-700 focus:border-[#c5a059] rounded-lg text-sm text-white focus:outline-none tracking-wider font-mono placeholder:font-sans placeholder-zinc-600 transition-colors"
+                  className="w-full pl-10 pr-11 py-3 bg-black border border-zinc-700 focus:border-[#c5a059] rounded-lg text-sm text-white focus:outline-none tracking-widest placeholder-zinc-600 transition-colors"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPasscode(!showPasscode)}
                   className="absolute inset-y-0 right-0 pr-3.5 flex items-center text-zinc-400 hover:text-zinc-200 transition-colors"
-                  title={showPasscode ? 'Hide secret code' : 'Show secret code'}
+                  title={showPasscode ? 'Hide password' : 'Show password'}
                 >
                   {showPasscode ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
               </div>
 
-              <p className="text-[11px] text-zinc-500 mt-1.5 flex items-center gap-1">
-                <span>Fixed Administrator Code:</span>
-                <code className="px-1.5 py-0.5 rounded bg-zinc-900 border border-zinc-800 text-[#c5a059] font-bold">
-                  123456789
-                </code>
+              <p className="text-[11px] text-zinc-500 mt-1.5 flex items-center gap-1.5">
+                <Lock className="w-3.5 h-3.5 text-[#c5a059]" />
+                <span>Restricted administrator access. Password is confidential.</span>
               </p>
             </div>
 
@@ -622,7 +609,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
               <span>Admin Authenticated</span>
             </span>
             <span className="text-zinc-600">•</span>
-            <span className="text-zinc-400 font-mono text-[11px]">Passcode: 123456789</span>
+            <span className="text-zinc-400 text-[11px]">Protected Session</span>
             {currentUser?.email && (
               <>
                 <span className="text-zinc-600">•</span>
@@ -837,7 +824,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                       <button
                         onClick={async () => {
                           if (!isAuthorized) {
-                            showNotification('Please enter admin password 123456789 to update items.', 'error');
+                            showNotification('Please log in with the admin password to update items.', 'error');
                             return;
                           }
                           try {
