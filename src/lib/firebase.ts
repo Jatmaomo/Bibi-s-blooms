@@ -58,20 +58,86 @@ export async function testConnection(): Promise<boolean> {
 // Initial Starter Products for Bibi's Blooms
 export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
   {
-    name: 'Midnight Navy Embroidered Agbada',
+    name: 'Heavyweight Graphic Luxury Roundneck',
     description:
-      'Majestic 3-piece hand-loomed Agbada featuring bespoke gold thread embroidery across the chest and cuffs. Designed for high-profile ceremonies and dignitaries.',
-    price: 85000,
-    category: 'Agbada',
+      'Good-quality 280GSM combed cotton roundneck tee. Pre-shrunk, ultra-soft, tailored everyday cut designed to elevate any casual look.',
+    price: 18000,
+    category: 'Roundnecks',
     image_url:
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
     sizes: ['M', 'L', 'XL', 'XXL'],
+    featured: true,
+  },
+  {
+    name: 'Signature Mercerized Pique Polo',
+    description:
+      'Premium breathable pique cotton polo with structured ribbed collar, mother-of-pearl buttons, and tailored cuffs for the handsome gentleman.',
+    price: 24000,
+    category: 'Polos',
+    image_url:
+      'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=800&auto=format&fit=crop',
+    sizes: ['M', 'L', 'XL', 'XXL'],
+    featured: true,
+  },
+  {
+    name: 'Vintage Wash Relaxed Baggy Jeans',
+    description:
+      'High-grade heavyweight denim in authentic vintage stone wash. Relaxed baggy cut through thigh and ankle with heavy-duty rivets and durable pocketing.',
+    price: 35000,
+    category: 'Baggy Jeans',
+    image_url:
+      'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
+    sizes: ['30', '32', '34', '36', '38'],
+    featured: true,
+  },
+  {
+    name: 'Embroidered Bibi Suede Trucker Cap',
+    description:
+      'Refined suede curved visor cap featuring intricate tonal embroidery, metal buckle adjustment, and sweatband lining.',
+    price: 15000,
+    category: 'Caps',
+    image_url:
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop',
+    sizes: ['One Size'],
+    featured: true,
+  },
+  {
+    name: 'Handcrafted Ergonomic Leather Slides',
+    description:
+      'Supple genuine leather slide sandals with contoured orthopedic footbed and non-slip rubber tread. Effortless everyday luxury.',
+    price: 26000,
+    category: 'Slides',
+    image_url:
+      'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?q=80&w=800&auto=format&fit=crop',
+    sizes: ['40', '41', '42', '43', '44', '45'],
+    featured: true,
+  },
+  {
+    name: 'Executive Chronograph Onyx Wristwatch',
+    description:
+      'Stainless steel casing with scratch-resistant sapphire crystal face and precision quartz chronograph movement. Water resistant.',
+    price: 48000,
+    category: 'Wristwatches',
+    image_url:
+      'https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=800&auto=format&fit=crop',
+    sizes: ['Standard'],
+    featured: true,
+  },
+  {
+    name: 'Tactical Leather Everyday Cross Bag',
+    description:
+      'Durable textured leather cross-body bag with multiple zippered utility compartments, padded shoulder strap, and polished dark hardware.',
+    price: 28000,
+    category: 'Cross Bags',
+    image_url:
+      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800&auto=format&fit=crop',
+    sizes: ['Standard'],
     featured: true,
   },
   {
     name: 'Imperial Black Senator Wear with Gold Trims',
     description:
-      'Crafted with premium Italian cashmere blend fabric, tailored to sculpt a sharp, masculine silhouette with minimalist gold neck detailing.',
+      'Crafted with premium Italian cashmere blend fabric, tailored to sculpt a sharp silhouette with minimalist gold neck detailing.',
     price: 45000,
     category: 'Senator Wear',
     image_url:
@@ -80,48 +146,15 @@ export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
     featured: true,
   },
   {
-    name: 'Emerald Green Monarch Kaftan',
+    name: 'Midnight Navy Embroidered Agbada',
     description:
-      'Regal Kaftan outfit with tonal geometric stitching and concealed placket. Highly breathable luxury cotton damask perfect for refined daywear.',
-    price: 52000,
-    category: 'Kaftan',
+      'Majestic 3-piece hand-loomed Agbada featuring bespoke gold thread embroidery across chest and cuffs. Ready-made for immediate dispatch.',
+    price: 85000,
+    category: 'Agbada',
     image_url:
-      'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=800&auto=format&fit=crop',
-    sizes: ['M', 'L', 'XL'],
-    featured: true,
-  },
-  {
-    name: 'Royal Burgundy Bespoke Native Suit',
-    description:
-      'Distinctive cut tailored from pure wool-blend woven native fabric. Features structured shoulders and tapered trousers.',
-    price: 48000,
-    category: 'Native Wear',
-    image_url:
-      'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=800&auto=format&fit=crop',
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop',
+    sizes: ['M', 'L', 'XL', 'XXL'],
     featured: false,
-  },
-  {
-    name: 'Monogram Luxury Crisp French Cuff Shirt',
-    description:
-      'Super 140s Egyptian giza cotton executive shirt with subtle textured weave, mother-of-pearl buttons, and bespoke collar stay.',
-    price: 32000,
-    category: 'Shirts',
-    image_url:
-      'https://images.unsplash.com/photo-1620012253295-c15c429fbb41?q=80&w=800&auto=format&fit=crop',
-    sizes: ['S', 'M', 'L', 'XL'],
-    featured: false,
-  },
-  {
-    name: 'Charcoal Wool Double-Breasted Suit',
-    description:
-      'Impeccable boardroom authority suit featuring peak lapels, horn buttons, and high-twist wool fabric resisting creases.',
-    price: 95000,
-    category: 'Corporate Wear',
-    image_url:
-      'https://images.unsplash.com/photo-1598808503746-f34c53b9323e?q=80&w=800&auto=format&fit=crop',
-    sizes: ['M', 'L', 'XL'],
-    featured: true,
   },
 ];
 

@@ -19,11 +19,11 @@ export const AboutPage: React.FC = () => {
 
       <div className="bg-[#121318] border border-zinc-800 rounded-xl p-8 sm:p-12 shadow-xl space-y-6 text-zinc-300 leading-relaxed">
         <p className="text-base sm:text-lg text-zinc-200 leading-relaxed font-light">
-          <strong className="text-white font-semibold">Bibi&apos;s Blooms</strong> is a men&apos;s fashion brand focused on quality, style, and confidence in ready-to-wear garments.
+          <strong className="text-white font-semibold">Bibi’s blooms</strong> is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
         </p>
 
         <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
-          Our brand is dedicated to curating ready-made menswear pieces that celebrate refined masculinity, sharp styling, and distinctive elegance. From authentic Nigerian native wear, regal Agbada, and classic Senator sets to tailored Kaftans and modern shirts, every garment is finished to the highest standards and ready for immediate delivery. We sell ready-to-wear wears—eliminating tailoring delays so you look distinguished instantly.
+          Our brand is dedicated to curating stylish, ready-made menswear pieces that celebrate confidence, comfort, and distinctive everyday elegance. Every piece is carefully chosen and finished to the highest standards, ready for immediate delivery directly to your doorstep—no waiting, no sewing delays.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80">

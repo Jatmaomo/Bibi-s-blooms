@@ -104,6 +104,21 @@ export default function App() {
   };
 
   // Cart operations
+  const handleAddToCart = (product: Product, size?: string) => {
+    const selectedSize = size || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard');
+    setCartItems((prev) => {
+      const existingIndex = prev.findIndex(
+        (item) => item.product.id === product.id && item.selectedSize === selectedSize
+      );
+      if (existingIndex > -1) {
+        const copy = [...prev];
+        copy[existingIndex].quantity += 1;
+        return copy;
+      }
+      return [...prev, { product, selectedSize, quantity: 1 }];
+    });
+  };
+
   const handleRemoveFromCart = (index: number) => {
     setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
@@ -144,10 +159,10 @@ export default function App() {
                     <span>Curated Selection</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1">
-                    Featured Products
+                    Featured Collection
                   </h2>
                   <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-lg">
-                    Distinctive signature garments retrieved in real time directly from our Firebase Firestore menswear database.
+                    Distinctive ready-to-wear pieces chosen for everyday confidence and classic elegance. Ready for immediate dispatch.
                   </p>
                 </div>
 
@@ -178,6 +193,7 @@ export default function App() {
                       key={product.id}
                       product={product}
                       onViewDetails={(p) => setSelectedProduct(p)}
+                      onAddToCart={handleAddToCart}
                     />
                   ))}
                 </div>
@@ -198,7 +214,7 @@ export default function App() {
                     Immediate Dispatch Ready Wears
                   </h3>
                   <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-                    No waiting weeks for tailors or dealing with sewing delays. Every piece at Bibi&apos;s Blooms is a premium ready-made luxury wear, cut and packaged to perfection for swift delivery to your doorstep.
+                    No waiting weeks for tailors or dealing with sewing delays. Every piece at Bibi’s Blooms is a premium ready-made wear—roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury native wear—ready for swift delivery to your doorstep.
                   </p>
                 </div>
 
@@ -231,6 +247,7 @@ export default function App() {
             onViewDetails={(p) => setSelectedProduct(p)}
             onRefresh={handleRefreshProducts}
             isLive={true}
+            onAddToCart={handleAddToCart}
           />
         )}
 
@@ -261,6 +278,7 @@ export default function App() {
       <ProductDetailsModal
         product={selectedProduct}
         onClose={() => setSelectedProduct(null)}
+        onAddToCart={handleAddToCart}
       />
 
       {/* Firebase Live Status Modal */}

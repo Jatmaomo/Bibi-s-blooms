@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import { formatNaira, getWhatsAppOrderUrl, WHATSAPP_PHONE } from '../lib/formatters';
-import { X, MessageCircle, Check, Sparkles, ShieldCheck, Ruler } from 'lucide-react';
+import { X, MessageCircle, Check, Sparkles, ShieldCheck, Ruler, ShoppingBag } from 'lucide-react';
 
 interface ProductDetailsModalProps {
   product: Product | null;
   onClose: () => void;
+  onAddToCart?: (product: Product, size: string) => void;
 }
 
 export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
   product,
   onClose,
+  onAddToCart,
 }) => {
   if (!product) return null;
 
@@ -18,6 +20,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
     product.sizes && product.sizes.length > 0 ? product.sizes[0] : ''
   );
   const [copied, setCopied] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
 
   const whatsAppUrl = getWhatsAppOrderUrl(product.name, product.price, selectedSize, product.category);
 
@@ -28,6 +31,14 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
     navigator.clipboard.writeText(window.location.href);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleAddToCart = () => {
+    if (onAddToCart) {
+      onAddToCart(product, selectedSize || (product.sizes?.[0] || 'Standard'));
+      setJustAdded(true);
+      setTimeout(() => setJustAdded(false), 2200);
+    }
   };
 
   return (
@@ -149,15 +160,30 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
             </div>
 
             {/* Bottom Actions */}
-            <div className="space-y-3 pt-4 border-t border-zinc-800">
+            <div className="space-y-2.5 pt-4 border-t border-zinc-800">
+              {/* Add to Cart Button */}
+              {onAddToCart && (
+                <button
+                  onClick={handleAddToCart}
+                  className="w-full py-3.5 px-6 rounded-lg bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-[#c5a059]/20 transition-all transform hover:-translate-y-0.5"
+                >
+                  <ShoppingBag className="w-5 h-5 text-black" />
+                  <span>{justAdded ? 'Added to Cart ✓' : 'Add to Cart'}</span>
+                </button>
+              )}
+
               {/* WhatsApp Order Button */}
               <a
                 href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 px-6 rounded-lg bg-gradient-to-r from-[#c5a059] to-[#d6b268] hover:from-[#d6b268] hover:to-[#e5c17b] text-black font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-[#c5a059]/20 transition-all transform hover:-translate-y-0.5"
+                className={`w-full py-3 px-6 rounded-lg ${
+                  onAddToCart
+                    ? 'bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-emerald-500 text-zinc-100'
+                    : 'bg-gradient-to-r from-[#c5a059] to-[#d6b268] text-black'
+                } font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all`}
               >
-                <MessageCircle className="w-5 h-5 text-black" />
+                <MessageCircle className="w-4 h-4 text-emerald-400" />
                 <span>Order via WhatsApp ({WHATSAPP_PHONE})</span>
               </a>
 

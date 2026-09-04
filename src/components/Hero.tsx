@@ -38,13 +38,13 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold font-luxury text-white uppercase tracking-[0.15em] sm:tracking-[0.2em] mb-4 drop-shadow-sm">
-          Premium Men&apos;s Wears
+        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold font-luxury text-white uppercase tracking-[0.1em] sm:tracking-[0.15em] mb-4 drop-shadow-sm leading-tight">
+          Hello handsome you are about to look so good
         </h1>
 
         {/* Subtitle / Positioning */}
-        <p className="max-w-2xl text-sm sm:text-base md:text-lg text-zinc-400 font-normal leading-relaxed mb-10">
-          Distinctive Senator wears, majestic Agbada ensembles, regal Kaftans, and crisp ready-to-wear shirts designed for gentlemen of refined elegance. Ready-made garments ready for instant dispatch.
+        <p className="max-w-2xl text-sm sm:text-base md:text-lg text-zinc-300 font-normal leading-relaxed mb-10">
+          Bibi’s blooms is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
         </p>
 
         {/* Action Buttons */}

@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
           <div className="md:col-span-2 space-y-4">
             <Logo size="md" showTagline={true} onClick={() => onNavigate('home')} />
             <p className="max-w-md text-xs leading-relaxed text-zinc-400">
-              Bibi&apos;s Blooms is a premium men&apos;s fashion house specializing in luxury ready-to-wear Senator wears, majestic Agbada attire, and regal Kaftans. All pieces are ready-made garments for immediate dispatch.
+              Bibi’s blooms is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
             </ul>
           </div>
 
-          {/* Col 3: Management & Supabase */}
+          {/* Col 3: Management */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-bold tracking-widest text-white">
               Administration
@@ -83,19 +83,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
                   <Shield className="w-3.5 h-3.5 text-[#c5a059]" />
                   <span>Admin Dashboard</span>
                 </button>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenSetup}
-                  className="hover:text-[#c5a059] text-xs text-zinc-400 transition-colors"
-                >
-                  Firebase Database Status
-                </button>
-              </li>
-              <li>
-                <span className="text-[11px] text-emerald-400/90 font-mono block">
-                  ● Connected to Firestore Live
-                </span>
               </li>
             </ul>
           </div>

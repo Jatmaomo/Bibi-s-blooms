@@ -1,24 +1,37 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
 import { formatNaira, getWhatsAppOrderUrl } from '../lib/formatters';
-import { Eye, MessageCircle, Sparkles } from 'lucide-react';
+import { Eye, MessageCircle, Sparkles, ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
   onViewDetails: (product: Product) => void;
+  onAddToCart?: (product: Product, size?: string) => void;
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   onViewDetails,
+  onAddToCart,
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [added, setAdded] = useState(false);
 
   const fallbackImage =
     'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop';
 
   const whatsAppUrl = getWhatsAppOrderUrl(product.name, product.price, undefined, product.category);
+
+  const handleAdd = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (onAddToCart) {
+      const defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Standard';
+      onAddToCart(product, defaultSize);
+      setAdded(true);
+      setTimeout(() => setAdded(false), 2000);
+    }
+  };
 
   return (
     <div className="group relative flex flex-col bg-[#121318] border border-zinc-800/80 hover:border-[#c5a059]/60 rounded-lg overflow-hidden transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.5)]">
@@ -124,15 +137,36 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               <Eye className="w-4 h-4" />
             </button>
 
+            {onAddToCart ? (
+              <button
+                onClick={handleAdd}
+                className="inline-flex items-center gap-1.5 px-3 py-2 bg-[#c5a059] hover:bg-[#d6b268] text-black text-xs font-bold uppercase tracking-wider rounded transition-all shadow-sm"
+                title="Add to Cart"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>{added ? 'Added ✓' : 'Add to Cart'}</span>
+              </button>
+            ) : (
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-2 bg-[#c5a059] hover:bg-[#d6b268] text-black text-xs font-bold uppercase tracking-wider rounded transition-all shadow-sm"
+                title="Order on WhatsApp"
+              >
+                <ShoppingBag className="w-3.5 h-3.5" />
+                <span>Add to Cart</span>
+              </a>
+            )}
+
             <a
               href={whatsAppUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 bg-[#c5a059] hover:bg-[#d6b268] text-black text-xs font-bold uppercase tracking-wider rounded transition-all shadow-sm"
-              title="Order on WhatsApp"
+              className="p-2 text-emerald-400 hover:text-emerald-300 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded transition-colors"
+              title="Quick Order via WhatsApp"
             >
-              <MessageCircle className="w-3.5 h-3.5" />
-              <span>Order</span>
+              <MessageCircle className="w-4 h-4" />
             </a>
           </div>
         </div>

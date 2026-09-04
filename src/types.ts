@@ -1,18 +1,32 @@
 export type ProductCategory =
-  | 'Native Wear'
+  | 'Roundnecks'
+  | 'Polos'
+  | 'Baggy Jeans'
+  | 'Caps'
+  | 'Slides'
+  | 'Wristwatches'
+  | 'Cross Bags'
   | 'Senator Wear'
   | 'Agbada'
   | 'Kaftan'
+  | 'Native Wear'
   | 'Shirts'
   | 'Corporate Wear'
   | 'Accessories'
   | 'Other';
 
 export const CATEGORIES: ProductCategory[] = [
-  'Native Wear',
+  'Roundnecks',
+  'Polos',
+  'Baggy Jeans',
+  'Caps',
+  'Slides',
+  'Wristwatches',
+  'Cross Bags',
   'Senator Wear',
   'Agbada',
   'Kaftan',
+  'Native Wear',
   'Shirts',
   'Corporate Wear',
   'Accessories',

@@ -9,6 +9,7 @@ interface ShopPageProps {
   onViewDetails: (product: Product) => void;
   onRefresh: () => void;
   isLive: boolean;
+  onAddToCart?: (product: Product, size?: string) => void;
 }
 
 export const ShopPage: React.FC<ShopPageProps> = ({
@@ -17,6 +18,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   onViewDetails,
   onRefresh,
   isLive,
+  onAddToCart,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -60,26 +62,22 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             Shop Bibi&apos;s Blooms
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-xl">
-            Explore authentic handcrafted men&apos;s wears. Each piece is cut and assembled with exceptional tailoring for the discerning gentleman.
+            Good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury wears. Ready for immediate dispatch.
           </p>
         </div>
 
-        {/* Sync Status & Refresh */}
+        {/* Inventory Status & Refresh */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-zinc-900 border border-zinc-800 text-xs text-zinc-400">
-            <span
-              className={`w-2 h-2 rounded-full ${
-                isLive ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
-              }`}
-            />
-            <span>{isLive ? 'Live Supabase Sync' : 'Local / Demo Mode'}</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Ready-To-Wear Inventory</span>
           </div>
 
           <button
             onClick={onRefresh}
             disabled={isLoading}
             className="p-2 text-zinc-300 hover:text-white bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded-md transition-colors disabled:opacity-50"
-            title="Refresh Products from Supabase"
+            title="Refresh Inventory"
           >
             <RefreshCw className={`w-4 h-4 ${isLoading ? 'animate-spin text-[#c5a059]' : ''}`} />
           </button>
@@ -166,6 +164,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
                 key={product.id}
                 product={product}
                 onViewDetails={onViewDetails}
+                onAddToCart={onAddToCart}
               />
             ))}
           </div>
