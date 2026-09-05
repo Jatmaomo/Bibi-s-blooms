@@ -234,7 +234,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     setEditingProduct(null);
     setFormName('');
     setFormPrice('');
-    setFormCategory('Senator Wear');
+    setFormCategory(CATEGORIES[0]);
     setFormDescription('');
     setFormSizes(['M', 'L', 'XL']);
     setFormFeatured(false);
@@ -909,7 +909,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="e.g. Premium Senator Wear"
+                  placeholder="e.g. Vintage Wash Baggy Jeans"
                   value={formName}
                   onChange={(e) => setFormName(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-zinc-900 border border-zinc-800 focus:border-[#c5a059] rounded text-sm text-white focus:outline-none"

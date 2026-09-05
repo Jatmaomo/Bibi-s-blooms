@@ -103,7 +103,8 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             More Than Style. It&apos;s A Lifestyle.
           </h2>
           <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-            <strong className="text-[#c5a059] font-bold">Bibi’s blooms</strong> is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+            Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
+            <strong className="text-[#c5a059] font-bold">Bibi’s Blooms</strong> is here to keep your wardrobe looking good.
           </p>
         </div>
 

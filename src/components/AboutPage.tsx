@@ -19,14 +19,12 @@ export const AboutPage: React.FC = () => {
 
       <div className="bg-[#121318] border border-zinc-800 rounded-xl p-8 sm:p-12 shadow-xl space-y-6 text-zinc-300 leading-relaxed">
         <p className="text-base sm:text-lg text-zinc-200 leading-relaxed font-light">
-          <strong className="text-[#c5a059] font-bold">
-            Bibi’s blooms
-          </strong>{' '}
-          is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+          Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
+          <strong className="text-[#c5a059] font-bold">Bibi’s Blooms</strong> is here to keep your wardrobe looking good.
         </p>
 
         <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
-          Our brand is dedicated to offering stylish, ready-made menswear pieces that celebrate confidence, comfort, and distinctive everyday style. Every piece is carefully picked and inspected, ready for immediate delivery directly to your doorstep—no waiting weeks for tailors, and no sewing delays.
+          Quality pieces. Easy shopping. Nationwide delivery. Everything you need to keep your style on point. Every item in our catalog is carefully chosen, inspected, and ready for immediate delivery directly to your doorstep—no delays, no stress.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80">

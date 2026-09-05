@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Product, ProductCategory, CATEGORIES } from '../types';
 import { ProductCard } from './ProductCard';
-import { Search, SlidersHorizontal, RefreshCw, Sparkles } from 'lucide-react';
+import { Search, SlidersHorizontal, RefreshCw, Sparkles, X } from 'lucide-react';
 
 interface ShopPageProps {
   products: Product[];
@@ -88,14 +88,23 @@ export const ShopPage: React.FC<ShopPageProps> = ({
       <div className="mt-8 flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
         {/* Search Input */}
         <div className="relative flex-1 max-w-md">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
-            placeholder="Search Senator, Agbada, Kaftan..."
+            placeholder="Search roundnecks, polos, baggy jeans, caps..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2.5 bg-zinc-900/90 border border-zinc-800 focus:border-[#c5a059] rounded-md text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors"
+            className="w-full pl-10 pr-9 py-2.5 bg-[#121318] border border-zinc-800 hover:border-zinc-700 focus:border-[#c5a059] rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors"
           />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white transition-colors"
+              title="Clear search"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
 
         {/* Sort Dropdown */}

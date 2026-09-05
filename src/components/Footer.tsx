@@ -22,10 +22,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
           <div className="md:col-span-2 space-y-4">
             <Logo size="md" showTagline={true} onClick={() => onNavigate('home')} />
             <p className="max-w-md text-xs leading-relaxed text-zinc-400">
-              <span className="text-[#c5a059] font-bold drop-shadow-[0_0_10px_rgba(197,160,89,0.55)] [text-shadow:0_0_12px_rgba(197,160,89,0.4)]">
-                Bibi’s blooms
-              </span>{' '}
-              is a men’s wear brand created for the everyday man who loves to look good. We offer good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches and cross bags, all carefully picked to give you pieces you’ll genuinely love to wear.
+              Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
+              <span className="text-[#c5a059] font-bold">Bibi’s Blooms</span> is here to keep your wardrobe looking good.
             </p>
             <div className="flex items-center gap-3 pt-2">
               <a
@@ -75,10 +73,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
               Ready-To-Wear
             </h4>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Every wear is ready-made for immediate nationwide dispatch. No tailoring delays. Instant styling for the modern gentleman.
+              Quality pieces. Easy shopping. Nationwide delivery. Everything you need to keep your style on point.
             </p>
             <div className="pt-2 text-[11px] text-[#c5a059]">
-              <span>Roundnecks • Polos • Baggy Jeans • Caps • Slides • Wristwatches • Cross Bags</span>
+              <span>Roundnecks • Polos • Baggy Jeans • Caps • Slides • Watches • Cross Bags</span>
             </div>
           </div>
         </div>
