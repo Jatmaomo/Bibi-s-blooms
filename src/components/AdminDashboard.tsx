@@ -56,7 +56,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   onExitAdmin,
 }) => {
   // Fixed Admin Master Passcode requested by user
-  const ADMIN_FIXED_PASSCODE = '123456789';
+  const ADMIN_FIXED_PASSCODE = '182671';
 
   // Master Passcode Login State
   const [passcode, setPasscode] = useState('');
@@ -185,11 +185,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     try {
       // Connect to Firebase Auth in background with admin credentials
       try {
-        await signInAdmin('admin@bibisblooms.com', '123456789');
+        await signInAdmin('admin@bibisblooms.com', ADMIN_FIXED_PASSCODE);
       } catch (authErr: any) {
-        if (authErr?.code === 'auth/user-not-found' || authErr?.code === 'auth/invalid-credential') {
+        try {
+          await signInAdmin('admin@bibisblooms.com', '123456789');
+        } catch {
           try {
-            await signUpAdmin('admin@bibisblooms.com', '123456789');
+            await signUpAdmin('admin@bibisblooms.com', ADMIN_FIXED_PASSCODE);
           } catch {
             // Silently continue
           }

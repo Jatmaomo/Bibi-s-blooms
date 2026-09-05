@@ -216,22 +216,22 @@ export default function App() {
                 </div>
               )}
 
-              {/* Ready-To-Wear Highlight Banner (Selling ready wears, not sewing) */}
+              {/* Everyday Wardrobe Collection Banner */}
               <div className="mt-16 sm:mt-24 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#121318] to-[#0a0a0d] border border-zinc-800/80 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
                 <div className="space-y-3 text-center md:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-xs uppercase font-bold tracking-widest text-[#c5a059]">
-                    <ShoppingBag className="w-3.5 h-3.5" />
-                    <span>Ready-To-Wear Collection • Not Sewing</span>
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Curated Selection • Prompt Delivery</span>
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-extrabold font-luxury text-white">
-                    Immediate Dispatch Ready Wears
+                    Elevate Your Everyday Wardrobe
                   </h3>
                   <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-                    No waiting weeks for tailors or dealing with sewing delays. Every piece at{' '}
-                    <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+                    Everything a well-dressed man needs, in one place. Handpicked roundnecks, polos, baggy jeans, caps, slides, watches, and cross bags at{' '}
+                    <span className="text-[#c5a059] font-bold">
                       Bibi’s Blooms
                     </span>{' '}
-                    is a premium ready-made wear—roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury native wear—ready for swift delivery to your doorstep.
+                    are in stock and ready for swift delivery directly to your doorstep.
                   </p>
                 </div>
 
@@ -241,7 +241,7 @@ export default function App() {
                     className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 whitespace-nowrap shadow-lg shadow-[#c5a059]/20 transition-transform hover:-translate-y-0.5"
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    <span>Browse Ready Wears</span>
+                    <span>Browse Collection</span>
                   </button>
 
                   <button

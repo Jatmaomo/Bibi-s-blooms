@@ -150,15 +150,15 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                 </div>
               )}
 
-              {/* Ready-to-Wear Quality Guarantee Note */}
+              {/* Quality Guarantee Note */}
               <div className="flex items-start gap-2.5 p-3 rounded-lg bg-zinc-900/60 border border-zinc-800 text-xs text-zinc-400">
                 <ShieldCheck className="w-4 h-4 text-[#c5a059] flex-shrink-0 mt-0.5" />
                 <span>
                   Authentic{' '}
-                  <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+                  <span className="text-[#c5a059] font-bold">
                     Bibi&apos;s Blooms
                   </span>{' '}
-                  ready-to-wear piece. All items are premium ready-made garments, ready for immediate dispatch (wears, not sewing).
+                  piece. Carefully picked and inspected for quality, in stock for prompt dispatch.
                 </span>
               </div>
             </div>

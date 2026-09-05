@@ -67,16 +67,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
             </ul>
           </div>
 
-          {/* Col 3: Brand Values */}
+          {/* Col 3: Customer Support */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-bold tracking-widest text-white">
-              Ready-To-Wear
+              Customer Care
             </h4>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Quality pieces. Easy shopping. Nationwide delivery. Everything you need to keep your style on point.
+              Questions about sizes, new arrivals, or placing an order? Reach out directly for prompt assistance and fast nationwide dispatch.
             </p>
-            <div className="pt-2 text-[11px] text-[#c5a059]">
-              <span>Roundnecks • Polos • Baggy Jeans • Caps • Slides • Watches • Cross Bags</span>
+            <div className="pt-1">
+              <a
+                href={`https://wa.me/${WHATSAPP_INTL}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#c5a059] hover:underline font-medium inline-flex items-center gap-1.5 text-xs"
+              >
+                <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Chat with Bibi on WhatsApp</span>
+              </a>
             </div>
           </div>
         </div>

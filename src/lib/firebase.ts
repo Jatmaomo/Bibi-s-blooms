@@ -60,7 +60,7 @@ export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
   {
     name: 'Heavyweight Graphic Luxury Roundneck',
     description:
-      'Good-quality 280GSM combed cotton roundneck tee. Pre-shrunk, ultra-soft, tailored everyday cut designed to elevate any casual look.',
+      'Good-quality 280GSM combed cotton roundneck tee. Pre-shrunk, ultra-soft, clean everyday cut designed to elevate any casual look.',
     price: 18000,
     category: 'Roundnecks',
     image_url:
@@ -71,7 +71,7 @@ export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
   {
     name: 'Signature Mercerized Pique Polo',
     description:
-      'Premium breathable pique cotton polo with structured ribbed collar, mother-of-pearl buttons, and tailored cuffs for the handsome gentleman.',
+      'Premium breathable pique cotton polo with structured ribbed collar, mother-of-pearl buttons, and ribbed cuffs for the handsome gentleman.',
     price: 24000,
     category: 'Polos',
     image_url:

@@ -29,12 +29,12 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     if (cartItems.length === 0) return;
 
     let message = "Hi Bibi, I’d like to shop for some wears.\n\n";
-    message += "I would like to order the following ready-to-wear pieces from your collection:\n\n";
+    message += "I would like to order the following pieces from your collection:\n\n";
     cartItems.forEach((item, idx) => {
       message += `${idx + 1}. ${item.product.name} (Size: ${item.selectedSize}, Qty: ${item.quantity}) - ${formatNaira(item.product.price * item.quantity)}\n`;
     });
     message += `\nEstimated Total: ${formatNaira(totalAmount)}\n`;
-    message += `\nPlease provide payment and delivery details. (Ready-to-wear pieces, not sewing)`;
+    message += `\nPlease provide payment and delivery details.`;
 
     window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`, '_blank');
   };

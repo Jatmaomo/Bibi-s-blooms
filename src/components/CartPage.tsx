@@ -42,7 +42,7 @@ export const CartPage: React.FC<CartPageProps> = ({
   const handleCheckoutWhatsApp = () => {
     if (cartItems.length === 0) return;
 
-    let message = "Hello Bibi, I would like to place an order for ready-to-wear wears from Bibi's Blooms:\n\n";
+    let message = "Hello Bibi, I would like to place an order from Bibi's Blooms:\n\n";
     message += "🛍️ ORDER PIECES:\n";
     cartItems.forEach((item, idx) => {
       message += `${idx + 1}. ${item.product.name}\n`;
@@ -62,7 +62,7 @@ export const CartPage: React.FC<CartPageProps> = ({
       message += `📝 NOTE: ${customerNote.trim()}\n`;
     }
 
-    message += "\nPlease provide your account details and delivery schedule. (Ready-to-wear wears, not sewing)";
+    message += "\nPlease provide payment details and delivery schedule.";
 
     window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`, '_blank');
   };
@@ -287,7 +287,7 @@ export const CartPage: React.FC<CartPageProps> = ({
               <div className="pt-4 border-t border-zinc-800/80 space-y-2 text-[11px] text-zinc-400">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 text-[#c5a059] flex-shrink-0" />
-                  <span>100% Ready-to-wear wears • Immediate dispatch</span>
+                  <span>Quality guaranteed • Fast nationwide dispatch</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#c5a059] flex-shrink-0" />
