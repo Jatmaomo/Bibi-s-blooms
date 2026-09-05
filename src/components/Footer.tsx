@@ -93,17 +93,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
               </span>
               . All rights reserved. &ldquo;Love, Joy and Blooms... ♥&rdquo;
             </p>
-            {/* Discreet Admin Arrow Link - Subtle so only admin notices it at the bottom */}
+            {/* Discreet Admin Link - Subtle laptop emoji so only admin notices it at the bottom */}
             <button
               onClick={() => {
                 onNavigate('admin');
                 scrollToTop();
               }}
-              title="Admin"
+              title="Admin Portal"
               aria-label="Admin Portal"
-              className="text-zinc-700 hover:text-[#c5a059] transition-colors p-1 rounded hover:bg-zinc-900 flex items-center cursor-pointer ml-1"
+              className="text-zinc-600 hover:text-[#c5a059] opacity-40 hover:opacity-100 transition-all p-1 rounded hover:bg-zinc-900 flex items-center cursor-pointer ml-1 text-xs"
             >
-              <span className="text-xs font-mono">&rarr;</span>
+              <span className="text-[12px] leading-none select-none">💻</span>
             </button>
           </div>
 
