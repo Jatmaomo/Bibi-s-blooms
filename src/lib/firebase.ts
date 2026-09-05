@@ -135,24 +135,24 @@ export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
     featured: true,
   },
   {
-    name: 'Imperial Black Senator Wear with Gold Trims',
+    name: 'Minimalist Signature Snapback Cap',
     description:
-      'Crafted with premium Italian cashmere blend fabric, tailored to sculpt a sharp silhouette with minimalist gold neck detailing.',
-    price: 45000,
-    category: 'Senator Wear',
+      'Structured 6-panel premium cotton twill cap with embroidered monogram and brass clasp closure.',
+    price: 18000,
+    category: 'Caps',
     image_url:
-      'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop',
-    sizes: ['S', 'M', 'L', 'XL'],
+      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop',
+    sizes: ['Standard'],
     featured: true,
   },
   {
-    name: 'Midnight Navy Embroidered Agbada',
+    name: 'Oversized Washed Graphic Roundneck Tee',
     description:
-      'Majestic 3-piece hand-loomed Agbada featuring bespoke gold thread embroidery across chest and cuffs. Ready-made for immediate dispatch.',
-    price: 85000,
-    category: 'Agbada',
+      'Vintage acid-washed heavyweight tee with relaxed drop shoulders and soft combed finish.',
+    price: 24000,
+    category: 'Roundnecks',
     image_url:
-      'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?q=80&w=800&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
     sizes: ['M', 'L', 'XL', 'XXL'],
     featured: false,
   },

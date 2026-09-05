@@ -101,7 +101,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                   {formatNaira(product.price)}
                 </span>
                 <span className="text-xs text-zinc-400 uppercase tracking-wider">
-                  Bespoke Craftsmanship
+                  Ready-To-Wear
                 </span>
               </div>
 
@@ -112,7 +112,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                 </h4>
                 <p className="text-sm text-zinc-300 leading-relaxed">
                   {product.description ||
-                    'Premium tailored garment from Bibi\'s Blooms. Handcrafted using high-grade fabrics, custom embroidery, and refined modern silhouettes.'}
+                    "Carefully picked ready-to-wear piece from Bibi's Blooms. Quality materials, comfortable modern fit, ready for immediate dispatch."}
                 </p>
               </div>
 

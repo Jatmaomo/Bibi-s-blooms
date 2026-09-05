@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
               Navigation
             </h4>
             <ul className="space-y-2">
-              {(['home', 'shop', 'reviews', 'about', 'contact'] as PageView[]).map((page) => (
+              {(['home', 'shop', 'cart', 'reviews', 'about', 'contact'] as PageView[]).map((page) => (
                 <li key={page}>
                   <button
                     onClick={() => {
@@ -62,44 +62,50 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
                     }}
                     className="hover:text-[#c5a059] uppercase tracking-wider text-xs transition-colors capitalize"
                   >
-                    {page}
+                    {page === 'cart' ? 'Shopping Cart' : page}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 3: Management */}
+          {/* Col 3: Brand Values */}
           <div className="space-y-3">
             <h4 className="text-xs uppercase font-bold tracking-widest text-white">
-              Administration
+              Ready-To-Wear
             </h4>
-            <ul className="space-y-2">
-              <li>
-                <button
-                  onClick={() => {
-                    onNavigate('admin');
-                    scrollToTop();
-                  }}
-                  className="hover:text-[#c5a059] uppercase tracking-wider text-xs transition-colors flex items-center gap-1.5 text-zinc-300"
-                >
-                  <Shield className="w-3.5 h-3.5 text-[#c5a059]" />
-                  <span>Admin Dashboard</span>
-                </button>
-              </li>
-            </ul>
+            <p className="text-xs text-zinc-400 leading-relaxed">
+              Every wear is ready-made for immediate nationwide dispatch. No tailoring delays. Instant styling for the modern gentleman.
+            </p>
+            <div className="pt-2 text-[11px] text-[#c5a059]">
+              <span>Roundnecks • Polos • Baggy Jeans • Caps • Slides • Wristwatches • Cross Bags</span>
+            </div>
           </div>
         </div>
 
-        {/* Bottom copyright & Back to top */}
+        {/* Bottom copyright, Discreet Admin Arrow & Back to top */}
         <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500">
-          <p>
-            &copy; {new Date().getFullYear()}{' '}
-            <span className="text-[#c5a059] font-semibold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
-              Bibi&apos;s Blooms
-            </span>
-            . All rights reserved. &ldquo;Love, Joy and Blooms... ♥&rdquo;
-          </p>
+          <div className="flex items-center gap-2">
+            <p>
+              &copy; {new Date().getFullYear()}{' '}
+              <span className="text-[#c5a059] font-semibold">
+                Bibi&apos;s Blooms
+              </span>
+              . All rights reserved. &ldquo;Love, Joy and Blooms... ♥&rdquo;
+            </p>
+            {/* Discreet Admin Arrow Link - Subtle so only admin notices it at the bottom */}
+            <button
+              onClick={() => {
+                onNavigate('admin');
+                scrollToTop();
+              }}
+              title="Admin"
+              aria-label="Admin Portal"
+              className="text-zinc-700 hover:text-[#c5a059] transition-colors p-1 rounded hover:bg-zinc-900 flex items-center cursor-pointer ml-1"
+            >
+              <span className="text-xs font-mono">&rarr;</span>
+            </button>
+          </div>
 
           <button
             onClick={scrollToTop}

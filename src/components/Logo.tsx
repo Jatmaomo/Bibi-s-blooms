@@ -72,25 +72,18 @@ export const Logo: React.FC<LogoProps> = ({
         </div>
       </div>
 
-      {/* Brand Typography with Gold Color and Aura */}
-      <div className={`relative flex flex-col ${isVertical ? 'items-center text-center' : 'text-left'}`}>
-        {/* Ambient aura glow behind brand name */}
-        <div className="absolute -inset-1.5 rounded-full bg-[#c5a059]/25 blur-lg pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
-
+      {/* Brand Typography - Clean, High-Fashion Luxury Aesthetics */}
+      <div className={`flex flex-col ${isVertical ? 'items-center text-center' : 'text-left'}`}>
         <span
-          className={`relative font-luxury uppercase text-[#c5a059] group-hover:text-[#e5c17b] transition-all leading-tight drop-shadow-[0_0_12px_rgba(197,160,89,0.55)] ${titleSizeClasses}`}
-          style={{
-            textShadow:
-              '0 0 16px rgba(197, 160, 89, 0.65), 0 0 32px rgba(197, 160, 89, 0.4), 0 0 48px rgba(197, 160, 89, 0.25)',
-          }}
+          className={`font-luxury uppercase text-[#c5a059] group-hover:text-[#dfbc74] transition-colors leading-tight tracking-[0.14em] font-bold ${titleSizeClasses}`}
         >
           Bibi's Blooms
         </span>
-        <span className="relative text-[10px] sm:text-xs text-[#d6b268] font-bold uppercase tracking-[0.28em] mt-0.5 drop-shadow-[0_0_8px_rgba(197,160,89,0.35)]">
+        <span className="text-[10px] sm:text-xs text-zinc-300 group-hover:text-[#d6b268] font-semibold uppercase tracking-[0.3em] mt-0.5 transition-colors">
           Gentlemen&apos;s Plug
         </span>
         {showTagline && (
-          <span className="relative text-[11px] sm:text-xs text-[#c5a059] font-medium tracking-wider italic mt-1 opacity-95 drop-shadow-[0_0_8px_rgba(197,160,89,0.4)]">
+          <span className="text-[11px] sm:text-xs text-[#c5a059] font-medium tracking-widest italic mt-1 opacity-90">
             Love, Joy and Blooms... ♥
           </span>
         )}

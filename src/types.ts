@@ -5,15 +5,7 @@ export type ProductCategory =
   | 'Caps'
   | 'Slides'
   | 'Wristwatches'
-  | 'Cross Bags'
-  | 'Senator Wear'
-  | 'Agbada'
-  | 'Kaftan'
-  | 'Native Wear'
-  | 'Shirts'
-  | 'Corporate Wear'
-  | 'Accessories'
-  | 'Other';
+  | 'Cross Bags';
 
 export const CATEGORIES: ProductCategory[] = [
   'Roundnecks',
@@ -23,14 +15,6 @@ export const CATEGORIES: ProductCategory[] = [
   'Slides',
   'Wristwatches',
   'Cross Bags',
-  'Senator Wear',
-  'Agbada',
-  'Kaftan',
-  'Native Wear',
-  'Shirts',
-  'Corporate Wear',
-  'Accessories',
-  'Other',
 ];
 
 export const AVAILABLE_SIZES = ['S', 'M', 'L', 'XL', 'XXL'] as const;
@@ -49,7 +33,7 @@ export interface Product {
   updated_at?: string;
 }
 
-export type PageView = 'home' | 'shop' | 'about' | 'reviews' | 'contact' | 'admin';
+export type PageView = 'home' | 'shop' | 'cart' | 'about' | 'reviews' | 'contact' | 'admin';
 
 export interface CartItem {
   product: Product;

@@ -101,7 +101,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </h3>
 
         <p className="mt-1 text-xs text-zinc-400 line-clamp-2 leading-relaxed flex-1">
-          {product.description || "Tailored with precision from Bibi's Blooms luxury collection."}
+          {product.description || "Carefully picked ready-to-wear piece from Bibi's Blooms gentlemen's collection."}
         </p>
 
         {/* Sizes preview if available */}

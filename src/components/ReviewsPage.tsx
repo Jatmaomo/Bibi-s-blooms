@@ -148,7 +148,7 @@ export const ReviewsPage: React.FC = () => {
         </h1>
         <p className="text-sm sm:text-base text-zinc-400 mt-2 max-w-2xl">
           Authentic feedback from gentlemen wearing{' '}
-          <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+          <span className="text-[#c5a059] font-bold">
             Bibi&apos;s Blooms
           </span>{' '}
           luxury ready-to-wear menswear. All pieces are ready-made garments ready for prompt delivery.
@@ -387,7 +387,7 @@ export const ReviewsPage: React.FC = () => {
                 <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="text"
-                    placeholder="e.g. Imperial Black Senator Wear or Kaftan"
+                    placeholder="e.g. Vintage Wash Baggy Jeans or Mercerized Polo"
                     value={formWearPurchased}
                     onChange={(e) => setFormWearPurchased(e.target.value)}
                     className="flex-1 px-4 py-2.5 bg-zinc-900 border border-zinc-800 focus:border-[#c5a059] rounded-lg text-sm text-white focus:outline-none"

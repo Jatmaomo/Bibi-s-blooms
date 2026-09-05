@@ -42,7 +42,7 @@ export const ContactPage: React.FC = () => {
         </h1>
         <p className="text-sm text-zinc-400 mt-2 max-w-md">
           Reach out directly to{' '}
-          <span className="text-[#c5a059] font-bold drop-shadow-[0_0_8px_rgba(197,160,89,0.5)]">
+          <span className="text-[#c5a059] font-bold">
             Bibi&apos;s Blooms
           </span>{' '}
           to shop for ready-to-wear wears, ask about available sizes, or arrange delivery.
@@ -54,7 +54,7 @@ export const ContactPage: React.FC = () => {
         {/* Left Column: Direct Contact Info */}
         <div className="bg-[#121318] border border-zinc-800 rounded-xl p-6 sm:p-8 flex flex-col justify-between space-y-6">
           <div className="space-y-6">
-            <h2 className="text-xl font-bold font-luxury text-[#c5a059] drop-shadow-[0_0_12px_rgba(197,160,89,0.55)] [text-shadow:0_0_16px_rgba(197,160,89,0.4)]">
+            <h2 className="text-xl font-bold font-luxury text-[#c5a059]">
               Bibi&apos;s Blooms
             </h2>
 
@@ -127,7 +127,7 @@ export const ContactPage: React.FC = () => {
               Direct Message
             </h2>
             <p className="text-xs text-zinc-400 mb-6">
-              Fill out this quick form and click send to initiate an order or bespoke inquiry with our tailors.
+              Fill out this quick form and click send to initiate an order or ready-to-wear sizing inquiry with Bibi.
             </p>
 
             <form onSubmit={handleSendMessage} className="space-y-4">
@@ -150,7 +150,7 @@ export const ContactPage: React.FC = () => {
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="Describe the piece or event you're preparing for (e.g. Senator suit for upcoming wedding, size XL)..."
+                  placeholder="Describe the ready-to-wear pieces you'd like to order (e.g. Baggy jeans in size 34 and a black polo)..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required

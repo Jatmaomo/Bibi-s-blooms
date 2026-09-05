@@ -85,7 +85,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
   // Form Fields
   const [formName, setFormName] = useState('');
   const [formPrice, setFormPrice] = useState<string>('');
-  const [formCategory, setFormCategory] = useState<ProductCategory>('Senator Wear');
+  const [formCategory, setFormCategory] = useState<ProductCategory>(CATEGORIES[0]);
   const [formDescription, setFormDescription] = useState('');
   const [formSizes, setFormSizes] = useState<string[]>(['M', 'L', 'XL']);
   const [formFeatured, setFormFeatured] = useState(false);

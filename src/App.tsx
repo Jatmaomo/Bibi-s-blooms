@@ -17,6 +17,7 @@ import { ContactPage } from './components/ContactPage';
 import { AdminDashboard } from './components/AdminDashboard';
 import { FirebaseStatusModal } from './components/FirebaseStatusModal';
 import { CartDrawer } from './components/CartDrawer';
+import { CartPage } from './components/CartPage';
 import { ReviewsPage } from './components/ReviewsPage';
 import { Sparkles, ArrowRight, ShoppingBag, Star, MessageSquare } from 'lucide-react';
 import { WHATSAPP_INTL } from './lib/formatters';
@@ -123,6 +124,18 @@ export default function App() {
     setCartItems((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const handleUpdateCartQuantity = (index: number, newQty: number) => {
+    if (newQty <= 0) {
+      handleRemoveFromCart(index);
+      return;
+    }
+    setCartItems((prev) => {
+      const copy = [...prev];
+      copy[index] = { ...copy[index], quantity: newQty };
+      return copy;
+    });
+  };
+
   const handleClearCart = () => {
     setCartItems([]);
   };
@@ -156,7 +169,7 @@ export default function App() {
                 <div>
                   <div className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#c5a059]">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Curated Selection</span>
+                    <span>Carefully Picked Selection</span>
                   </div>
                   <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1">
                     Featured Collection
@@ -252,6 +265,16 @@ export default function App() {
             onRefresh={handleRefreshProducts}
             isLive={true}
             onAddToCart={handleAddToCart}
+          />
+        )}
+
+        {currentPage === 'cart' && (
+          <CartPage
+            cartItems={cartItems}
+            onUpdateQuantity={handleUpdateCartQuantity}
+            onRemoveItem={handleRemoveFromCart}
+            onClearCart={handleClearCart}
+            onNavigate={handleNavigate}
           />
         )}
 
