@@ -22,7 +22,15 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
   const [copied, setCopied] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
 
-  const whatsAppUrl = getWhatsAppOrderUrl(product.name, product.price, selectedSize, product.category);
+  const whatsAppUrl = getWhatsAppOrderUrl({
+    name: product.name,
+    price: product.price,
+    description: product.description,
+    category: product.category,
+    size: selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined),
+    sizes: product.sizes,
+    imageUrl: product.image_url,
+  });
 
   const fallbackImage =
     'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop';

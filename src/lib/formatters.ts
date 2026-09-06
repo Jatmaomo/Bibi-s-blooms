@@ -13,26 +13,69 @@ export const WHATSAPP_PHONE = '07054022430';
 export const WHATSAPP_INTL = '2347054022430';
 export const CONTACT_EMAIL = 'bisolahassan2022@gmail.com';
 
+export interface WhatsAppOrderProduct {
+  name: string;
+  price: number;
+  description?: string;
+  size?: string;
+  category?: string;
+  sizes?: string[];
+  imageUrl?: string;
+}
+
 /**
  * Generate a direct WhatsApp link with pre-filled message
- * As requested: "Hi Bibi, I’d like to shop for some wears."
+ * When customers come into Bibi's DM through the website, all product information
+ * (Product name, Description / Details, Price, Category, Size, Photo) is included.
  */
 export function getWhatsAppOrderUrl(
-  productName: string,
-  price: number,
+  productOrName: string | WhatsAppOrderProduct,
+  price?: number,
   size?: string,
-  category?: string
+  category?: string,
+  description?: string,
+  imageUrl?: string,
+  availableSizes?: string[]
 ): string {
-  const formattedPrice = formatNaira(price);
+  let name = '';
+  let itemPrice = 0;
+  let itemSize = size;
+  let itemCategory = category;
+  let itemDescription = description;
+  let itemImageUrl = imageUrl;
+  let itemSizes = availableSizes;
+
+  if (typeof productOrName === 'object' && productOrName !== null) {
+    name = productOrName.name;
+    itemPrice = productOrName.price;
+    itemSize = productOrName.size;
+    itemCategory = productOrName.category;
+    itemDescription = productOrName.description;
+    itemImageUrl = productOrName.imageUrl;
+    itemSizes = productOrName.sizes;
+  } else if (typeof productOrName === 'string') {
+    name = productOrName;
+    itemPrice = price ?? 0;
+  }
+
+  const formattedPrice = formatNaira(itemPrice);
   let message = `Hi Bibi, I’d like to shop for some wears.\n\n`;
   message += `I would like to order this piece from your collection:\n`;
-  message += `• Product: ${productName}\n`;
-  message += `• Price: ${formattedPrice}\n`;
-  if (size) {
-    message += `• Size: ${size}\n`;
+  message += `• Product: ${name}\n`;
+  if (itemDescription && itemDescription.trim()) {
+    message += `• Details: ${itemDescription.trim()}\n`;
   }
-  if (category) {
-    message += `• Category: ${category}\n`;
+  message += `• Price: ${formattedPrice}\n`;
+  if (itemCategory) {
+    message += `• Category: ${itemCategory}\n`;
+  }
+  if (itemSize) {
+    message += `• Size: ${itemSize}\n`;
+  } else if (itemSizes && itemSizes.length > 0) {
+    message += `• Available Sizes: ${itemSizes.join(', ')}\n`;
+  }
+  if (itemImageUrl) {
+    message += `• Photo: ${itemImageUrl}\n`;
   }
   message += `\nPlease confirm availability and delivery.`;
 

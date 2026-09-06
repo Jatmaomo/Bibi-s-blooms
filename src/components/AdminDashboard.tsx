@@ -958,14 +958,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                 </div>
               </div>
 
-              {/* Description */}
+              {/* Description / Item Details */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-400 mb-1">
-                  Description
+                  Description / Details (Sent in customer WhatsApp order)
                 </label>
                 <textarea
                   rows={3}
-                  placeholder="Describe the fabric cut, styling details, and occasion suitability..."
+                  placeholder="e.g. Black color fully boxed and comes with bag / Brown color fully boxed..."
                   value={formDescription}
                   onChange={(e) => setFormDescription(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-zinc-900 border border-zinc-800 focus:border-[#c5a059] rounded text-sm text-white focus:outline-none resize-none"

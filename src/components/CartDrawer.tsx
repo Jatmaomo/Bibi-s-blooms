@@ -31,7 +31,15 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     let message = "Hi Bibi, I’d like to shop for some wears.\n\n";
     message += "I would like to order the following pieces from your collection:\n\n";
     cartItems.forEach((item, idx) => {
-      message += `${idx + 1}. ${item.product.name} (Size: ${item.selectedSize}, Qty: ${item.quantity}) - ${formatNaira(item.product.price * item.quantity)}\n`;
+      message += `${idx + 1}. ${item.product.name}\n`;
+      if (item.product.description && item.product.description.trim()) {
+        message += `   • Details: ${item.product.description.trim()}\n`;
+      }
+      message += `   • Size: ${item.selectedSize} | Qty: ${item.quantity} | ${formatNaira(item.product.price * item.quantity)}\n`;
+      if (item.product.image_url) {
+        message += `   • Photo: ${item.product.image_url}\n`;
+      }
+      message += `\n`;
     });
     message += `\nEstimated Total: ${formatNaira(totalAmount)}\n`;
     message += `\nPlease provide payment and delivery details.`;

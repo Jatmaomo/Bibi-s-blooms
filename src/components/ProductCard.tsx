@@ -21,7 +21,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   const fallbackImage =
     'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop';
 
-  const whatsAppUrl = getWhatsAppOrderUrl(product.name, product.price, undefined, product.category);
+  const whatsAppUrl = getWhatsAppOrderUrl({
+    name: product.name,
+    price: product.price,
+    description: product.description,
+    category: product.category,
+    sizes: product.sizes,
+    imageUrl: product.image_url,
+  });
 
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();

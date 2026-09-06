@@ -46,10 +46,17 @@ export const CartPage: React.FC<CartPageProps> = ({
     message += "🛍️ ORDER PIECES:\n";
     cartItems.forEach((item, idx) => {
       message += `${idx + 1}. ${item.product.name}\n`;
+      if (item.product.description && item.product.description.trim()) {
+        message += `   • Details: ${item.product.description.trim()}\n`;
+      }
       message += `   • Category: ${item.product.category}\n`;
       message += `   • Size: ${item.selectedSize}\n`;
       message += `   • Quantity: ${item.quantity}\n`;
-      message += `   • Price: ${formatNaira(item.product.price * item.quantity)}\n\n`;
+      message += `   • Price: ${formatNaira(item.product.price * item.quantity)}\n`;
+      if (item.product.image_url) {
+        message += `   • Photo: ${item.product.image_url}\n`;
+      }
+      message += `\n`;
     });
 
     message += `💰 ESTIMATED TOTAL: ${formatNaira(totalAmount)}\n`;
