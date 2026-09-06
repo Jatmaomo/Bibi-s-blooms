@@ -74,9 +74,6 @@ export function getWhatsAppOrderUrl(
   } else if (itemSizes && itemSizes.length > 0) {
     message += `• Available Sizes: ${itemSizes.join(', ')}\n`;
   }
-  if (itemImageUrl) {
-    message += `• Photo: ${itemImageUrl}\n`;
-  }
   message += `\nPlease confirm availability and delivery.`;
 
   return `https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`;

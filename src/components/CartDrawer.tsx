@@ -35,11 +35,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       if (item.product.description && item.product.description.trim()) {
         message += `   • Details: ${item.product.description.trim()}\n`;
       }
-      message += `   • Size: ${item.selectedSize} | Qty: ${item.quantity} | ${formatNaira(item.product.price * item.quantity)}\n`;
-      if (item.product.image_url) {
-        message += `   • Photo: ${item.product.image_url}\n`;
-      }
-      message += `\n`;
+      message += `   • Size: ${item.selectedSize} | Qty: ${item.quantity} | ${formatNaira(item.product.price * item.quantity)}\n\n`;
     });
     message += `\nEstimated Total: ${formatNaira(totalAmount)}\n`;
     message += `\nPlease provide payment and delivery details.`;

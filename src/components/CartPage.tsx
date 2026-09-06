@@ -52,11 +52,7 @@ export const CartPage: React.FC<CartPageProps> = ({
       message += `   • Category: ${item.product.category}\n`;
       message += `   • Size: ${item.selectedSize}\n`;
       message += `   • Quantity: ${item.quantity}\n`;
-      message += `   • Price: ${formatNaira(item.product.price * item.quantity)}\n`;
-      if (item.product.image_url) {
-        message += `   • Photo: ${item.product.image_url}\n`;
-      }
-      message += `\n`;
+      message += `   • Price: ${formatNaira(item.product.price * item.quantity)}\n\n`;
     });
 
     message += `💰 ESTIMATED TOTAL: ${formatNaira(totalAmount)}\n`;
