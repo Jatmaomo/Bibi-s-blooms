@@ -11,7 +11,12 @@ export function formatNaira(amount: number): string {
 
 export const WHATSAPP_PHONE = '07054022430';
 export const WHATSAPP_INTL = '2347054022430';
+export const SNAPCHAT_URL =
+  'https://www.snapchat.com/add/bibisblooms26?share_id=XC6SWF85RQyb9OcqUSYLjw&locale=en_NG';
+export const SNAPCHAT_USERNAME = 'bibisblooms26';
 export const CONTACT_EMAIL = 'bisolahassan2022@gmail.com';
+
+export type OrderChannel = 'whatsapp' | 'snapchat';
 
 export interface WhatsAppOrderProduct {
   name: string;
@@ -24,17 +29,14 @@ export interface WhatsAppOrderProduct {
 }
 
 /**
- * Generate a direct WhatsApp link with pre-filled message
- * When customers come into Bibi's DM through the website, all product information
- * (Product name, Description / Details, Price, Category, Size, Photo) is included.
+ * Build clean, formatted order text
  */
-export function getWhatsAppOrderUrl(
+export function buildProductOrderMessage(
   productOrName: string | WhatsAppOrderProduct,
   price?: number,
   size?: string,
   category?: string,
   description?: string,
-  imageUrl?: string,
   availableSizes?: string[]
 ): string {
   let name = '';
@@ -42,7 +44,6 @@ export function getWhatsAppOrderUrl(
   let itemSize = size;
   let itemCategory = category;
   let itemDescription = description;
-  let itemImageUrl = imageUrl;
   let itemSizes = availableSizes;
 
   if (typeof productOrName === 'object' && productOrName !== null) {
@@ -51,7 +52,6 @@ export function getWhatsAppOrderUrl(
     itemSize = productOrName.size;
     itemCategory = productOrName.category;
     itemDescription = productOrName.description;
-    itemImageUrl = productOrName.imageUrl;
     itemSizes = productOrName.sizes;
   } else if (typeof productOrName === 'string') {
     name = productOrName;
@@ -75,8 +75,59 @@ export function getWhatsAppOrderUrl(
     message += `• Available Sizes: ${itemSizes.join(', ')}\n`;
   }
   message += `\nPlease confirm availability and delivery.`;
+  return message;
+}
 
+/**
+ * Generate a direct WhatsApp link with pre-filled message
+ * When customers come into Bibi's DM through the website, all product information
+ * (Product name, Description / Details, Price, Category, Size) is included.
+ */
+export function getWhatsAppOrderUrl(
+  productOrName: string | WhatsAppOrderProduct,
+  price?: number,
+  size?: string,
+  category?: string,
+  description?: string,
+  imageUrl?: string,
+  availableSizes?: string[]
+): string {
+  const message = buildProductOrderMessage(
+    productOrName,
+    price,
+    size,
+    category,
+    description,
+    availableSizes
+  );
   return `https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`;
+}
+
+/**
+ * Dispatch an order to either WhatsApp or Snapchat based on customer selection.
+ * - WhatsApp: Opens direct chat with prefilled order text.
+ * - Snapchat: Copies order text to clipboard and opens Bibi's Snapchat profile.
+ */
+export async function dispatchOrder(
+  channel: OrderChannel,
+  orderMessage: string,
+  onNotice?: (msg: string) => void
+): Promise<void> {
+  if (channel === 'whatsapp') {
+    window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(orderMessage)}`, '_blank');
+  } else {
+    try {
+      if (navigator?.clipboard?.writeText) {
+        await navigator.clipboard.writeText(orderMessage);
+      }
+    } catch {
+      // Ignore clipboard fallback
+    }
+    if (onNotice) {
+      onNotice("Order details copied to clipboard! Paste directly in Bibi's Snapchat chat.");
+    }
+    window.open(SNAPCHAT_URL, '_blank');
+  }
 }
 
 /**

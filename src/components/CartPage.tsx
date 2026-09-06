@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { CartItem, PageView } from '../types';
-import { formatNaira, WHATSAPP_PHONE, WHATSAPP_INTL } from '../lib/formatters';
+import {
+  formatNaira,
+  WHATSAPP_PHONE,
+  SNAPCHAT_USERNAME,
+  OrderChannel,
+  dispatchOrder,
+} from '../lib/formatters';
 import {
   ShoppingBag,
   Trash2,
@@ -12,6 +18,7 @@ import {
   ShieldCheck,
   CheckCircle2,
   MapPin,
+  Ghost,
 } from 'lucide-react';
 
 interface CartPageProps {
@@ -31,6 +38,8 @@ export const CartPage: React.FC<CartPageProps> = ({
 }) => {
   const [deliveryLocation, setDeliveryLocation] = useState('');
   const [customerNote, setCustomerNote] = useState('');
+  const [orderChannel, setOrderChannel] = useState<OrderChannel>('whatsapp');
+  const [statusNotification, setStatusNotification] = useState<string | null>(null);
 
   const totalAmount = cartItems.reduce(
     (sum, item) => sum + item.product.price * item.quantity,
@@ -39,7 +48,7 @@ export const CartPage: React.FC<CartPageProps> = ({
 
   const totalItemsCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  const handleCheckoutWhatsApp = () => {
+  const handlePlaceOrder = () => {
     if (cartItems.length === 0) return;
 
     let message = "Hello Bibi, I would like to place an order from Bibi's Blooms:\n\n";
@@ -67,7 +76,10 @@ export const CartPage: React.FC<CartPageProps> = ({
 
     message += "\nPlease provide payment details and delivery schedule.";
 
-    window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`, '_blank');
+    dispatchOrder(orderChannel, message, (msg) => {
+      setStatusNotification(msg);
+      setTimeout(() => setStatusNotification(null), 6000);
+    });
   };
 
   return (
@@ -271,19 +283,104 @@ export const CartPage: React.FC<CartPageProps> = ({
                     className="w-full px-3 py-2 bg-zinc-900 border border-zinc-800 focus:border-[#c5a059] rounded-lg text-xs text-white placeholder-zinc-500 focus:outline-none"
                   />
                 </div>
+
+                {/* Choose Order Channel: WhatsApp or Snapchat */}
+                <div className="pt-2">
+                  <label className="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-2">
+                    Send Order Directly To
+                  </label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setOrderChannel('whatsapp')}
+                      className={`p-3 rounded-lg border text-left flex flex-col gap-1 transition-all cursor-pointer ${
+                        orderChannel === 'whatsapp'
+                          ? 'bg-emerald-950/40 border-emerald-500 text-white shadow-sm'
+                          : 'bg-zinc-900/80 border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold flex items-center gap-1.5 text-white">
+                          <MessageCircle
+                            className={`w-3.5 h-3.5 ${
+                              orderChannel === 'whatsapp' ? 'text-emerald-400' : 'text-zinc-400'
+                            }`}
+                          />
+                          WhatsApp
+                        </span>
+                        {orderChannel === 'whatsapp' && (
+                          <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-zinc-400 truncate">
+                        Bibi ({WHATSAPP_PHONE})
+                      </span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setOrderChannel('snapchat')}
+                      className={`p-3 rounded-lg border text-left flex flex-col gap-1 transition-all cursor-pointer ${
+                        orderChannel === 'snapchat'
+                          ? 'bg-amber-950/40 border-amber-400 text-white shadow-sm'
+                          : 'bg-zinc-900/80 border-zinc-800 text-zinc-400 hover:border-zinc-700'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold flex items-center gap-1.5 text-white">
+                          <Ghost
+                            className={`w-3.5 h-3.5 ${
+                              orderChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                            }`}
+                          />
+                          Snapchat
+                        </span>
+                        {orderChannel === 'snapchat' && (
+                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                        )}
+                      </div>
+                      <span className="text-[10px] text-zinc-400 truncate">
+                        @{SNAPCHAT_USERNAME}
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
+
+              {/* Status Notification Toast */}
+              {statusNotification && (
+                <div className="p-3 bg-amber-950/60 border border-amber-500/50 rounded-lg text-amber-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                  <span>{statusNotification}</span>
+                </div>
+              )}
 
               {/* Checkout Button */}
               <button
-                onClick={handleCheckoutWhatsApp}
-                className="w-full py-4 px-4 rounded-lg bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#c5a059]/20 transition-transform hover:-translate-y-0.5 cursor-pointer"
+                onClick={handlePlaceOrder}
+                className={`w-full py-4 px-4 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer ${
+                  orderChannel === 'whatsapp'
+                    ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
+                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                }`}
               >
-                <MessageCircle className="w-4 h-4 text-black" />
-                <span>CHECKOUT ON WHATSAPP</span>
+                {orderChannel === 'whatsapp' ? (
+                  <>
+                    <MessageCircle className="w-4 h-4 text-black" />
+                    <span>CHECKOUT ON WHATSAPP</span>
+                  </>
+                ) : (
+                  <>
+                    <Ghost className="w-4 h-4 text-black" />
+                    <span>CHECKOUT ON SNAPCHAT</span>
+                  </>
+                )}
               </button>
 
               <p className="text-[11px] text-zinc-400 text-center leading-relaxed">
-                Clicking checkout opens WhatsApp directly with Bibi ({WHATSAPP_PHONE}) with your order prefilled.
+                {orderChannel === 'whatsapp'
+                  ? `Clicking checkout opens WhatsApp directly with Bibi (${WHATSAPP_PHONE}) with your order prefilled.`
+                  : `Clicking checkout copies your order details to clipboard and opens Bibi's Snapchat (@${SNAPCHAT_USERNAME}).`}
               </p>
 
               {/* Assurance Trust Badges */}

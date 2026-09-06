@@ -6,10 +6,13 @@ import {
   Send,
   CheckCircle2,
   ExternalLink,
+  Ghost,
 } from 'lucide-react';
 import {
   WHATSAPP_PHONE,
   WHATSAPP_INTL,
+  SNAPCHAT_URL,
+  SNAPCHAT_USERNAME,
   CONTACT_EMAIL,
 } from '../lib/formatters';
 
@@ -76,6 +79,24 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
 
+            {/* Snapchat Box */}
+            <div className="p-4 rounded-lg bg-zinc-900/80 border border-zinc-800 flex items-start gap-4">
+              <div className="p-2.5 rounded-lg bg-amber-950/60 text-amber-300 border border-amber-800/40">
+                <Ghost className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold block">
+                  Snapchat
+                </span>
+                <span className="text-base sm:text-lg font-mono font-bold text-zinc-100">
+                  @{SNAPCHAT_USERNAME}
+                </span>
+                <p className="text-xs text-zinc-400 mt-0.5">
+                  Direct message us on Snapchat for quick orders and inquiries
+                </p>
+              </div>
+            </div>
+
             {/* Email Box */}
             <div className="p-4 rounded-lg bg-zinc-900/80 border border-zinc-800 flex items-start gap-4">
               <div className="p-2.5 rounded-lg bg-amber-950/60 text-[#c5a059] border border-[#c5a059]/30">
@@ -106,6 +127,18 @@ export const ContactPage: React.FC = () => {
             >
               <MessageCircle className="w-4 h-4" />
               <span>Chat on WhatsApp</span>
+              <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            </a>
+
+            <a
+              id="contact-snapchat-btn"
+              href={SNAPCHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 px-4 rounded-lg bg-[#FFFC00] hover:bg-yellow-300 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-yellow-500/20"
+            >
+              <Ghost className="w-4 h-4 text-black" />
+              <span>Chat on Snapchat (@{SNAPCHAT_USERNAME})</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
 

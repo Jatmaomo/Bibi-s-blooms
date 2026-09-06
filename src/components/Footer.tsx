@@ -1,8 +1,14 @@
 import React from 'react';
 import { PageView } from '../types';
 import { Logo } from './Logo';
-import { MessageCircle, Mail, Shield, ArrowUp } from 'lucide-react';
-import { WHATSAPP_PHONE, WHATSAPP_INTL, CONTACT_EMAIL } from '../lib/formatters';
+import { MessageCircle, Mail, Shield, ArrowUp, Ghost } from 'lucide-react';
+import {
+  WHATSAPP_PHONE,
+  WHATSAPP_INTL,
+  SNAPCHAT_URL,
+  SNAPCHAT_USERNAME,
+  CONTACT_EMAIL,
+} from '../lib/formatters';
 
 interface FooterProps {
   onNavigate: (page: PageView) => void;
@@ -25,7 +31,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
               Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
               <span className="text-[#c5a059] font-bold">Bibi’s Blooms</span> is here to keep your wardrobe looking good.
             </p>
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex flex-wrap items-center gap-2.5 pt-2">
               <a
                 href={`https://wa.me/${WHATSAPP_INTL}`}
                 target="_blank"
@@ -36,11 +42,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
                 <span>WhatsApp: {WHATSAPP_PHONE}</span>
               </a>
               <a
+                href={SNAPCHAT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 transition-colors"
+              >
+                <Ghost className="w-3.5 h-3.5 text-amber-300" />
+                <span>Snapchat: @{SNAPCHAT_USERNAME}</span>
+              </a>
+              <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 transition-colors"
               >
                 <Mail className="w-3.5 h-3.5 text-[#c5a059]" />
-                <span>Email Us</span>
+                <span>Email</span>
               </a>
             </div>
           </div>

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
-import { formatNaira, getWhatsAppOrderUrl } from '../lib/formatters';
-import { Eye, MessageCircle, Sparkles, ShoppingBag } from 'lucide-react';
+import {
+  formatNaira,
+  getWhatsAppOrderUrl,
+  buildProductOrderMessage,
+  dispatchOrder,
+  SNAPCHAT_USERNAME,
+} from '../lib/formatters';
+import { Eye, MessageCircle, Sparkles, ShoppingBag, Ghost } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -29,6 +35,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     sizes: product.sizes,
     imageUrl: product.image_url,
   });
+
+  const handleSnapchatOrder = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const message = buildProductOrderMessage({
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      category: product.category,
+      sizes: product.sizes,
+    });
+    dispatchOrder('snapchat', message);
+  };
 
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -175,6 +193,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             >
               <MessageCircle className="w-4 h-4" />
             </a>
+
+            <button
+              onClick={handleSnapchatOrder}
+              className="p-2 text-amber-300 hover:text-amber-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded transition-colors"
+              title={`Quick Order via Snapchat (@${SNAPCHAT_USERNAME})`}
+            >
+              <Ghost className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

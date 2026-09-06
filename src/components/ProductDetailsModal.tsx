@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
 import { Product } from '../types';
-import { formatNaira, getWhatsAppOrderUrl, WHATSAPP_PHONE } from '../lib/formatters';
-import { X, MessageCircle, Check, Sparkles, ShieldCheck, Ruler, ShoppingBag } from 'lucide-react';
+import {
+  formatNaira,
+  buildProductOrderMessage,
+  dispatchOrder,
+  OrderChannel,
+  WHATSAPP_PHONE,
+  SNAPCHAT_USERNAME,
+} from '../lib/formatters';
+import {
+  X,
+  MessageCircle,
+  Check,
+  Sparkles,
+  ShieldCheck,
+  Ruler,
+  ShoppingBag,
+  Ghost,
+  CheckCircle2,
+} from 'lucide-react';
 
 interface ProductDetailsModalProps {
   product: Product | null;
@@ -21,19 +38,27 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
   );
   const [copied, setCopied] = useState(false);
   const [justAdded, setJustAdded] = useState(false);
-
-  const whatsAppUrl = getWhatsAppOrderUrl({
-    name: product.name,
-    price: product.price,
-    description: product.description,
-    category: product.category,
-    size: selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined),
-    sizes: product.sizes,
-    imageUrl: product.image_url,
-  });
+  const [orderChannel, setOrderChannel] = useState<OrderChannel>('whatsapp');
+  const [orderNotification, setOrderNotification] = useState<string | null>(null);
 
   const fallbackImage =
     'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop';
+
+  const handleDirectOrder = () => {
+    const message = buildProductOrderMessage({
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      category: product.category,
+      size: selectedSize || (product.sizes && product.sizes.length > 0 ? product.sizes[0] : undefined),
+      sizes: product.sizes,
+    });
+
+    dispatchOrder(orderChannel, message, (msg) => {
+      setOrderNotification(msg);
+      setTimeout(() => setOrderNotification(null), 5000);
+    });
+  };
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -172,35 +197,96 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
             </div>
 
             {/* Bottom Actions */}
-            <div className="space-y-2.5 pt-4 border-t border-zinc-800">
+            <div className="space-y-3 pt-4 border-t border-zinc-800">
+              {/* Order Channel Selector */}
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider font-semibold text-zinc-400 mb-1.5">
+                  Order Destination
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setOrderChannel('whatsapp')}
+                    className={`py-2 px-3 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      orderChannel === 'whatsapp'
+                        ? 'bg-emerald-950/70 border-emerald-500 text-white shadow-sm'
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <MessageCircle
+                      className={`w-3.5 h-3.5 ${
+                        orderChannel === 'whatsapp' ? 'text-emerald-400' : 'text-zinc-400'
+                      }`}
+                    />
+                    <span>WhatsApp</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setOrderChannel('snapchat')}
+                    className={`py-2 px-3 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      orderChannel === 'snapchat'
+                        ? 'bg-amber-950/70 border-amber-400 text-white shadow-sm'
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
+                    }`}
+                  >
+                    <Ghost
+                      className={`w-3.5 h-3.5 ${
+                        orderChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                      }`}
+                    />
+                    <span>Snapchat</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Notification Toast */}
+              {orderNotification && (
+                <div className="p-2.5 bg-amber-950/70 border border-amber-500/60 rounded-lg text-amber-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                  <span className="leading-tight">{orderNotification}</span>
+                </div>
+              )}
+
+              {/* Direct Order Button */}
+              <button
+                onClick={handleDirectOrder}
+                className={`w-full py-3.5 px-6 rounded-lg font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer ${
+                  orderChannel === 'whatsapp'
+                    ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
+                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                }`}
+              >
+                {orderChannel === 'whatsapp' ? (
+                  <>
+                    <MessageCircle className="w-4 h-4 text-black" />
+                    <span>Order via WhatsApp ({WHATSAPP_PHONE})</span>
+                  </>
+                ) : (
+                  <>
+                    <Ghost className="w-4 h-4 text-black" />
+                    <span>Order via Snapchat (@{SNAPCHAT_USERNAME})</span>
+                  </>
+                )}
+              </button>
+
               {/* Add to Cart Button */}
               {onAddToCart && (
                 <button
                   onClick={handleAddToCart}
-                  className="w-full py-3.5 px-6 rounded-lg bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-2.5 shadow-lg shadow-[#c5a059]/20 transition-all transform hover:-translate-y-0.5"
+                  className="w-full py-3 px-6 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-[#c5a059] text-zinc-100 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer"
                 >
-                  <ShoppingBag className="w-5 h-5 text-black" />
-                  <span>{justAdded ? 'Added to Cart ✓' : 'Add to Cart'}</span>
+                  <ShoppingBag className="w-4 h-4 text-[#c5a059]" />
+                  <span>{justAdded ? 'Added to Cart ✓' : 'Add to Order Bag'}</span>
                 </button>
               )}
 
-              {/* WhatsApp Order Button */}
-              <a
-                href={whatsAppUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`w-full py-3 px-6 rounded-lg ${
-                  onAddToCart
-                    ? 'bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-emerald-500 text-zinc-100'
-                    : 'bg-gradient-to-r from-[#c5a059] to-[#d6b268] text-black'
-                } font-bold text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all`}
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-400" />
-                <span>Order via WhatsApp ({WHATSAPP_PHONE})</span>
-              </a>
-
               <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
-                <span>Instant response via WhatsApp</span>
+                <span>
+                  {orderChannel === 'whatsapp'
+                    ? 'Fast inquiry & order confirmation on WhatsApp'
+                    : 'Fast order chat on Snapchat'}
+                </span>
                 <button
                   onClick={handleCopyLink}
                   className="hover:text-zinc-300 transition-colors flex items-center gap-1"

@@ -8,8 +8,9 @@ import {
   Shield,
   MessageCircle,
   Flame,
+  Ghost,
 } from 'lucide-react';
-import { WHATSAPP_INTL } from '../lib/formatters';
+import { WHATSAPP_INTL, SNAPCHAT_URL } from '../lib/formatters';
 
 interface NavbarProps {
   currentPage: PageView;
@@ -102,11 +103,23 @@ export const Navbar: React.FC<NavbarProps> = ({
               href={`https://wa.me/${WHATSAPP_INTL}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider uppercase text-zinc-300 hover:text-white border border-zinc-700/60 hover:border-[#c5a059]/60 rounded-md transition-all bg-zinc-900/40"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider uppercase text-zinc-300 hover:text-white border border-zinc-700/60 hover:border-emerald-500/60 rounded-md transition-all bg-zinc-900/40"
               title="Chat directly on WhatsApp"
             >
               <MessageCircle className="w-3.5 h-3.5 text-emerald-400" />
               <span>07054022430</span>
+            </a>
+
+            {/* Snapchat Quick Order Inquiry */}
+            <a
+              href={SNAPCHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider uppercase text-zinc-300 hover:text-white border border-zinc-700/60 hover:border-amber-400/60 rounded-md transition-all bg-zinc-900/40"
+              title="Chat directly on Snapchat (@bibisblooms26)"
+            >
+              <Ghost className="w-3.5 h-3.5 text-amber-300" />
+              <span>Snapchat</span>
             </a>
 
             {/* Cart Button */}
@@ -207,6 +220,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <MessageCircle className="w-4 h-4 text-emerald-400" />
               <span>WhatsApp: 07054022430</span>
+            </a>
+
+            <a
+              href={SNAPCHAT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-md bg-[#FFFC00]/10 hover:bg-[#FFFC00]/20 text-sm text-yellow-300 border border-yellow-500/40"
+            >
+              <Ghost className="w-4 h-4 text-amber-300" />
+              <span>Snapchat: @bibisblooms26</span>
             </a>
           </div>
         </div>

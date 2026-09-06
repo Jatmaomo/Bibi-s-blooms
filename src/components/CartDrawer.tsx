@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CartItem } from '../types';
-import { formatNaira, WHATSAPP_PHONE, WHATSAPP_INTL } from '../lib/formatters';
-import { X, Trash2, MessageCircle, ShoppingBag, ArrowRight } from 'lucide-react';
+import {
+  formatNaira,
+  WHATSAPP_PHONE,
+  SNAPCHAT_USERNAME,
+  OrderChannel,
+  dispatchOrder,
+} from '../lib/formatters';
+import { X, Trash2, MessageCircle, ShoppingBag, Ghost, CheckCircle2 } from 'lucide-react';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -18,6 +24,9 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   onRemoveItem,
   onClearCart,
 }) => {
+  const [drawerChannel, setDrawerChannel] = useState<OrderChannel>('whatsapp');
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
+
   if (!isOpen) return null;
 
   const totalAmount = cartItems.reduce(
@@ -25,7 +34,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     0
   );
 
-  const handleOrderAllOnWhatsApp = () => {
+  const handleOrderAll = () => {
     if (cartItems.length === 0) return;
 
     let message = "Hi Bibi, I’d like to shop for some wears.\n\n";
@@ -37,10 +46,13 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       }
       message += `   • Size: ${item.selectedSize} | Qty: ${item.quantity} | ${formatNaira(item.product.price * item.quantity)}\n\n`;
     });
-    message += `\nEstimated Total: ${formatNaira(totalAmount)}\n`;
-    message += `\nPlease provide payment and delivery details.`;
+    message += `Estimated Total: ${formatNaira(totalAmount)}\n\n`;
+    message += `Please provide payment and delivery details.`;
 
-    window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(message)}`, '_blank');
+    dispatchOrder(drawerChannel, message, (msg) => {
+      setToastMsg(msg);
+      setTimeout(() => setToastMsg(null), 5000);
+    });
   };
 
   return (
@@ -112,7 +124,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
 
           {/* Footer Checkout */}
           {cartItems.length > 0 && (
-            <div className="p-6 border-t border-zinc-800 bg-zinc-950/80 space-y-4">
+            <div className="p-6 border-t border-zinc-800 bg-zinc-950/80 space-y-3.5">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-zinc-400 uppercase tracking-wider text-xs">
                   Estimated Total:
@@ -122,12 +134,73 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 </span>
               </div>
 
+              {/* Destination Selector */}
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider font-semibold text-zinc-400 mb-1.5">
+                  Order Destination
+                </label>
+                <div className="grid grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setDrawerChannel('whatsapp')}
+                    className={`py-2 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
+                      drawerChannel === 'whatsapp'
+                        ? 'bg-emerald-950/60 border-emerald-500 text-white'
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-300'
+                    }`}
+                  >
+                    <MessageCircle
+                      className={`w-3.5 h-3.5 ${
+                        drawerChannel === 'whatsapp' ? 'text-emerald-400' : 'text-zinc-400'
+                      }`}
+                    />
+                    <span>WhatsApp</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setDrawerChannel('snapchat')}
+                    className={`py-2 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
+                      drawerChannel === 'snapchat'
+                        ? 'bg-amber-950/60 border-amber-400 text-white'
+                        : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-300'
+                    }`}
+                  >
+                    <Ghost
+                      className={`w-3.5 h-3.5 ${
+                        drawerChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                      }`}
+                    />
+                    <span>Snapchat</span>
+                  </button>
+                </div>
+              </div>
+
+              {toastMsg && (
+                <div className="p-2.5 bg-amber-950/70 border border-amber-500/60 rounded-lg text-amber-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                  <span className="leading-tight">{toastMsg}</span>
+                </div>
+              )}
+
               <button
-                onClick={handleOrderAllOnWhatsApp}
-                className="w-full py-3.5 px-4 rounded-lg bg-[#c5a059] hover:bg-[#d6b268] text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-colors"
+                onClick={handleOrderAll}
+                className={`w-full py-3.5 px-4 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer ${
+                  drawerChannel === 'whatsapp'
+                    ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
+                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                }`}
               >
-                <MessageCircle className="w-4 h-4 text-black" />
-                <span>Order on WhatsApp ({WHATSAPP_PHONE})</span>
+                {drawerChannel === 'whatsapp' ? (
+                  <>
+                    <MessageCircle className="w-4 h-4 text-black" />
+                    <span>Order on WhatsApp ({WHATSAPP_PHONE})</span>
+                  </>
+                ) : (
+                  <>
+                    <Ghost className="w-4 h-4 text-black" />
+                    <span>Order on Snapchat (@{SNAPCHAT_USERNAME})</span>
+                  </>
+                )}
               </button>
 
               <button
