@@ -26,11 +26,21 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Col 1: Brand & Tagline */}
           <div className="md:col-span-2 space-y-4">
-            <Logo size="md" showTagline={true} onClick={() => onNavigate('home')} />
-            <p className="max-w-md text-xs leading-relaxed text-zinc-400">
-              Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
-              <span className="text-[#c5a059] font-bold">Bibi’s Blooms</span> is here to keep your wardrobe looking good.
-            </p>
+            <Logo
+              size="md"
+              title="SHOP BIBI’S BLOOMS"
+              subtitle="The Gentlemen's Plug"
+              showTagline={false}
+              onClick={() => onNavigate('home')}
+            />
+            <div className="max-w-md space-y-1.5 text-xs leading-relaxed text-zinc-400">
+              <p className="font-semibold text-zinc-300 uppercase tracking-wider text-[11px]">
+                From Our Store To Your Door.
+              </p>
+              <p>
+                Found something you like? Don’t overthink it. Place your order, sit pretty, and we’ll get it dispatched to you. Nationwide delivery available.
+              </p>
+            </div>
             <div className="flex flex-wrap items-center gap-2.5 pt-2">
               <a
                 href={`https://wa.me/${WHATSAPP_INTL}`}

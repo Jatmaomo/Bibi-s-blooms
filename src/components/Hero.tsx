@@ -95,17 +95,26 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
         </div>
 
         {/* About Section Teaser */}
-        <div className="max-w-2xl text-center space-y-3 mb-10">
-          <span className="text-[11px] uppercase font-bold tracking-[0.2em] text-[#c5a059] block">
+        <div className="max-w-2xl text-center space-y-3.5 mb-10">
+          <span className="text-[11px] uppercase font-bold tracking-[0.25em] text-[#c5a059] block">
             About Us
           </span>
           <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold font-['Outfit',sans-serif] uppercase tracking-wide text-white">
-            More Than Style. It&apos;s A Lifestyle.
+            LOOK GOOD. FEEL GOOD. SHOW UP.
           </h2>
-          <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
-            Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
-            <strong className="text-[#c5a059] font-bold">Bibi’s Blooms</strong> is here to keep your wardrobe looking good.
-          </p>
+          <div className="space-y-2 text-sm sm:text-base text-zinc-300 font-normal leading-relaxed">
+            <p>
+              At <strong className="text-[#c5a059] font-bold">Bibi’s blooms</strong>, we believe looking good shouldn’t have to feel like hard work.
+            </p>
+            <p className="text-zinc-400 text-xs sm:text-sm">
+              We bring you carefully selected men’s wears that make getting dressed easier! From everyday essentials to pieces that make you stand out without trying too hard.
+            </p>
+          </div>
+          <div className="pt-1">
+            <span className="inline-block px-3.5 py-1 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-xs font-semibold uppercase tracking-wider text-[#dfbe77]">
+              Good style. Good quality. Good energy.
+            </span>
+          </div>
         </div>
 
         {/* Action Buttons */}

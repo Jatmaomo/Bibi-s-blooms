@@ -18,14 +18,29 @@ export const AboutPage: React.FC = () => {
       </div>
 
       <div className="bg-[#121318] border border-zinc-800 rounded-xl p-8 sm:p-12 shadow-xl space-y-6 text-zinc-300 leading-relaxed">
-        <p className="text-base sm:text-lg text-zinc-200 leading-relaxed font-light">
-          Everything a well-dressed man needs, in one place. From your everyday roundnecks and polos to baggy jeans, caps, slides, watches and cross bags,{' '}
-          <strong className="text-[#c5a059] font-bold">Bibi’s Blooms</strong> is here to keep your wardrobe looking good.
-        </p>
+        <div className="space-y-3">
+          <h2 className="text-xl sm:text-2xl font-extrabold font-luxury text-white tracking-wide uppercase">
+            LOOK GOOD. FEEL GOOD. SHOW UP.
+          </h2>
+          <p className="text-base sm:text-lg text-zinc-200 leading-relaxed font-light">
+            At <strong className="text-[#c5a059] font-bold">Bibi’s blooms</strong>, we believe looking good shouldn’t have to feel like hard work.
+          </p>
+          <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
+            We bring you carefully selected men’s wears that make getting dressed easier! From everyday essentials to pieces that make you stand out without trying too hard.
+          </p>
+          <div className="inline-block px-3.5 py-1 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-xs font-semibold uppercase tracking-wider text-[#dfbe77]">
+            Good style. Good quality. Good energy.
+          </div>
+        </div>
 
-        <p className="text-sm sm:text-base leading-relaxed text-zinc-300">
-          Quality pieces. Easy shopping. Nationwide delivery. Everything you need to keep your style on point. Every item in our catalog is carefully chosen, inspected, and ready for immediate delivery directly to your doorstep—no delays, no stress.
-        </p>
+        <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800/80 space-y-1">
+          <h4 className="text-xs font-bold uppercase tracking-widest text-[#c5a059]">
+            FROM OUR STORE TO YOUR DOOR.
+          </h4>
+          <p className="text-xs sm:text-sm text-zinc-300">
+            Found something you like? Don’t overthink it. Place your order, sit pretty, and we’ll get it dispatched to you. Nationwide delivery available.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80">
           <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800 flex flex-col items-center text-center">

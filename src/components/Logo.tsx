@@ -8,6 +8,9 @@ interface LogoProps {
   className?: string;
   onClick?: () => void;
   orientation?: 'horizontal' | 'vertical';
+  title?: string;
+  subtitle?: string;
+  taglineText?: string;
 }
 
 export const Logo: React.FC<LogoProps> = ({
@@ -16,6 +19,9 @@ export const Logo: React.FC<LogoProps> = ({
   className = '',
   onClick,
   orientation = 'horizontal',
+  title = "Bibi's Blooms",
+  subtitle = "Gentlemen's Plug",
+  taglineText = "Love, Joy and Blooms... ♥",
 }) => {
   const [imageError, setImageError] = useState(false);
 
@@ -77,14 +83,16 @@ export const Logo: React.FC<LogoProps> = ({
         <span
           className={`font-luxury uppercase text-[#c5a059] group-hover:text-[#dfbc74] transition-colors leading-tight tracking-[0.14em] font-bold ${titleSizeClasses}`}
         >
-          Bibi's Blooms
+          {title}
         </span>
-        <span className="text-[10px] sm:text-xs text-zinc-300 group-hover:text-[#d6b268] font-semibold uppercase tracking-[0.3em] mt-0.5 transition-colors">
-          Gentlemen&apos;s Plug
-        </span>
-        {showTagline && (
+        {subtitle && (
+          <span className="text-[10px] sm:text-xs text-zinc-300 group-hover:text-[#d6b268] font-semibold uppercase tracking-[0.3em] mt-0.5 transition-colors">
+            {subtitle}
+          </span>
+        )}
+        {showTagline && taglineText && (
           <span className="text-[11px] sm:text-xs text-[#c5a059] font-medium tracking-widest italic mt-1 opacity-90">
-            Love, Joy and Blooms... ♥
+            {taglineText}
           </span>
         )}
       </div>

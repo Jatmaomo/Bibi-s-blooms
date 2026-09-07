@@ -19,7 +19,7 @@ import { FirebaseStatusModal } from './components/FirebaseStatusModal';
 import { CartDrawer } from './components/CartDrawer';
 import { CartPage } from './components/CartPage';
 import { ReviewsPage } from './components/ReviewsPage';
-import { Sparkles, ArrowRight, ShoppingBag, Star, MessageSquare } from 'lucide-react';
+import { Sparkles, ArrowRight, ShoppingBag, Star, MessageSquare, Truck } from 'lucide-react';
 import { WHATSAPP_INTL } from './lib/formatters';
 
 export default function App() {
@@ -169,13 +169,16 @@ export default function App() {
                 <div>
                   <div className="flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#c5a059]">
                     <Sparkles className="w-3.5 h-3.5" />
-                    <span>Carefully Picked Selection</span>
+                    <span>BIBI’S BLOOMS</span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1">
-                    Featured Collection
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1 uppercase">
+                    THE GENTLEMEN’S PLUG.
                   </h2>
-                  <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-lg">
-                    Distinctive ready-to-wear pieces chosen for everyday confidence and classic elegance. Ready for immediate dispatch.
+                  <p className="text-xs sm:text-sm text-zinc-300 mt-1.5 max-w-xl font-medium leading-relaxed">
+                    Premium pieces for the modern gentleman. Easy to wear. Easy to style. Impossible to ignore!
+                  </p>
+                  <p className="text-[11px] sm:text-xs text-[#c5a059] font-serif italic mt-1">
+                    &ldquo;Luxury isn’t expensive. It’s intentional.&rdquo;
                   </p>
                 </div>
 
@@ -216,23 +219,24 @@ export default function App() {
                 </div>
               )}
 
-              {/* Everyday Wardrobe Collection Banner */}
+              {/* Delivery Banner: From Our Store To Your Door */}
               <div className="mt-16 sm:mt-24 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#121318] to-[#0a0a0d] border border-zinc-800/80 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl">
                 <div className="space-y-3 text-center md:text-left">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#c5a059]/10 border border-[#c5a059]/30 text-xs uppercase font-bold tracking-widest text-[#c5a059]">
-                    <Sparkles className="w-3.5 h-3.5" />
-                    <span>Curated Selection • Prompt Delivery</span>
+                    <Truck className="w-3.5 h-3.5" />
+                    <span>Nationwide Delivery Available</span>
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold font-luxury text-white">
-                    Elevate Your Everyday Wardrobe
+                  <h3 className="text-2xl sm:text-3xl font-extrabold font-luxury text-white uppercase tracking-wide">
+                    FROM OUR STORE TO YOUR DOOR.
                   </h3>
-                  <p className="text-xs sm:text-sm text-zinc-400 max-w-xl leading-relaxed">
-                    Everything a well-dressed man needs, in one place. Handpicked roundnecks, polos, baggy jeans, caps, slides, watches, and cross bags at{' '}
-                    <span className="text-[#c5a059] font-bold">
-                      Bibi’s Blooms
-                    </span>{' '}
-                    are in stock and ready for swift delivery directly to your doorstep.
-                  </p>
+                  <div className="space-y-1 text-xs sm:text-sm text-zinc-300 max-w-xl leading-relaxed">
+                    <p className="font-semibold text-zinc-200">
+                      Found something you like? Don’t overthink it.
+                    </p>
+                    <p className="text-zinc-400">
+                      Place your order, sit pretty, and we’ll get it dispatched to you. Nationwide delivery available.
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-center gap-3">
