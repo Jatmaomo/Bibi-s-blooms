@@ -8,9 +8,9 @@ import {
   Shield,
   MessageCircle,
   Flame,
-  Ghost,
+  Music2,
 } from 'lucide-react';
-import { WHATSAPP_INTL, SNAPCHAT_URL } from '../lib/formatters';
+import { WHATSAPP_INTL, TIKTOK_URL, TIKTOK_USERNAME } from '../lib/formatters';
 
 interface NavbarProps {
   currentPage: PageView;
@@ -110,16 +110,16 @@ export const Navbar: React.FC<NavbarProps> = ({
               <span>07054022430</span>
             </a>
 
-            {/* Snapchat Quick Order Inquiry */}
+            {/* TikTok Quick Inquiry & Follow */}
             <a
-              href={SNAPCHAT_URL}
+              href={TIKTOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider uppercase text-zinc-300 hover:text-white border border-zinc-700/60 hover:border-amber-400/60 rounded-md transition-all bg-zinc-900/40"
-              title="Chat directly on Snapchat (@bibisblooms26)"
+              className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs tracking-wider uppercase text-zinc-300 hover:text-white border border-zinc-700/60 hover:border-pink-500/60 rounded-md transition-all bg-zinc-900/40"
+              title={`Follow & Chat on TikTok (@${TIKTOK_USERNAME})`}
             >
-              <Ghost className="w-3.5 h-3.5 text-amber-300" />
-              <span>Snapchat</span>
+              <Music2 className="w-3.5 h-3.5 text-pink-400" />
+              <span>TikTok</span>
             </a>
 
             {/* Cart Button */}
@@ -223,13 +223,13 @@ export const Navbar: React.FC<NavbarProps> = ({
             </a>
 
             <a
-              href={SNAPCHAT_URL}
+              href={TIKTOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-md bg-[#FFFC00]/10 hover:bg-[#FFFC00]/20 text-sm text-yellow-300 border border-yellow-500/40"
+              className="flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-md bg-zinc-900 hover:bg-zinc-800 text-sm text-zinc-200 border border-zinc-700/80 hover:border-pink-500/50 transition-colors"
             >
-              <Ghost className="w-4 h-4 text-amber-300" />
-              <span>Snapchat: @bibisblooms26</span>
+              <Music2 className="w-4 h-4 text-pink-400" />
+              <span>TikTok: @{TIKTOK_USERNAME}</span>
             </a>
           </div>
         </div>

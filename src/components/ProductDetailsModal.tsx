@@ -6,7 +6,7 @@ import {
   dispatchOrder,
   OrderChannel,
   WHATSAPP_PHONE,
-  SNAPCHAT_USERNAME,
+  TIKTOK_USERNAME,
 } from '../lib/formatters';
 import {
   X,
@@ -16,7 +16,7 @@ import {
   ShieldCheck,
   Ruler,
   ShoppingBag,
-  Ghost,
+  Music2,
   CheckCircle2,
 } from 'lucide-react';
 
@@ -223,27 +223,27 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
 
                   <button
                     type="button"
-                    onClick={() => setOrderChannel('snapchat')}
+                    onClick={() => setOrderChannel('tiktok')}
                     className={`py-2 px-3 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-                      orderChannel === 'snapchat'
-                        ? 'bg-amber-950/70 border-amber-400 text-white shadow-sm'
+                      orderChannel === 'tiktok'
+                        ? 'bg-pink-950/70 border-pink-500 text-white shadow-sm'
                         : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white'
                     }`}
                   >
-                    <Ghost
+                    <Music2
                       className={`w-3.5 h-3.5 ${
-                        orderChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                        orderChannel === 'tiktok' ? 'text-pink-400' : 'text-zinc-400'
                       }`}
                     />
-                    <span>Snapchat</span>
+                    <span>TikTok</span>
                   </button>
                 </div>
               </div>
 
               {/* Notification Toast */}
               {orderNotification && (
-                <div className="p-2.5 bg-amber-950/70 border border-amber-500/60 rounded-lg text-amber-200 text-xs flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                <div className="p-2.5 bg-pink-950/70 border border-pink-500/60 rounded-lg text-pink-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-pink-400 flex-shrink-0" />
                   <span className="leading-tight">{orderNotification}</span>
                 </div>
               )}
@@ -254,7 +254,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                 className={`w-full py-3.5 px-6 rounded-lg font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2.5 transition-all shadow-md cursor-pointer ${
                   orderChannel === 'whatsapp'
                     ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
-                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                    : 'bg-black hover:bg-zinc-900 text-white border border-pink-500/60 shadow-pink-950/30'
                 }`}
               >
                 {orderChannel === 'whatsapp' ? (
@@ -264,8 +264,8 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                   </>
                 ) : (
                   <>
-                    <Ghost className="w-4 h-4 text-black" />
-                    <span>Order via Snapchat (@{SNAPCHAT_USERNAME})</span>
+                    <Music2 className="w-4 h-4 text-pink-400" />
+                    <span>Order via TikTok (@{TIKTOK_USERNAME})</span>
                   </>
                 )}
               </button>
@@ -285,7 +285,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
                 <span>
                   {orderChannel === 'whatsapp'
                     ? 'Fast inquiry & order confirmation on WhatsApp'
-                    : 'Fast order chat on Snapchat'}
+                    : 'Fast order chat in Bibi’s TikTok DM'}
                 </span>
                 <button
                   onClick={handleCopyLink}

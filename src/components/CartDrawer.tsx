@@ -3,11 +3,11 @@ import { CartItem } from '../types';
 import {
   formatNaira,
   WHATSAPP_PHONE,
-  SNAPCHAT_USERNAME,
+  TIKTOK_USERNAME,
   OrderChannel,
   dispatchOrder,
 } from '../lib/formatters';
-import { X, Trash2, MessageCircle, ShoppingBag, Ghost, CheckCircle2 } from 'lucide-react';
+import { X, Trash2, MessageCircle, ShoppingBag, Music2, CheckCircle2 } from 'lucide-react';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -158,26 +158,26 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </button>
                   <button
                     type="button"
-                    onClick={() => setDrawerChannel('snapchat')}
+                    onClick={() => setDrawerChannel('tiktok')}
                     className={`py-2 px-2.5 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
-                      drawerChannel === 'snapchat'
-                        ? 'bg-amber-950/60 border-amber-400 text-white'
+                      drawerChannel === 'tiktok'
+                        ? 'bg-pink-950/60 border-pink-500 text-white'
                         : 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-300'
                     }`}
                   >
-                    <Ghost
+                    <Music2
                       className={`w-3.5 h-3.5 ${
-                        drawerChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                        drawerChannel === 'tiktok' ? 'text-pink-400' : 'text-zinc-400'
                       }`}
                     />
-                    <span>Snapchat</span>
+                    <span>TikTok</span>
                   </button>
                 </div>
               </div>
 
               {toastMsg && (
-                <div className="p-2.5 bg-amber-950/70 border border-amber-500/60 rounded-lg text-amber-200 text-xs flex items-center gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                <div className="p-2.5 bg-pink-950/70 border border-pink-500/60 rounded-lg text-pink-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-pink-400 flex-shrink-0" />
                   <span className="leading-tight">{toastMsg}</span>
                 </div>
               )}
@@ -187,7 +187,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 className={`w-full py-3.5 px-4 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer ${
                   drawerChannel === 'whatsapp'
                     ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
-                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                    : 'bg-black hover:bg-zinc-900 text-white border border-pink-500/60 shadow-pink-950/30'
                 }`}
               >
                 {drawerChannel === 'whatsapp' ? (
@@ -197,8 +197,8 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </>
                 ) : (
                   <>
-                    <Ghost className="w-4 h-4 text-black" />
-                    <span>Order on Snapchat (@{SNAPCHAT_USERNAME})</span>
+                    <Music2 className="w-4 h-4 text-pink-400" />
+                    <span>Order on TikTok (@{TIKTOK_USERNAME})</span>
                   </>
                 )}
               </button>

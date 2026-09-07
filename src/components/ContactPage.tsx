@@ -6,13 +6,13 @@ import {
   Send,
   CheckCircle2,
   ExternalLink,
-  Ghost,
+  Music2,
 } from 'lucide-react';
 import {
   WHATSAPP_PHONE,
   WHATSAPP_INTL,
-  SNAPCHAT_URL,
-  SNAPCHAT_USERNAME,
+  TIKTOK_URL,
+  TIKTOK_USERNAME,
   CONTACT_EMAIL,
 } from '../lib/formatters';
 
@@ -79,20 +79,20 @@ export const ContactPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Snapchat Box */}
+            {/* TikTok Box */}
             <div className="p-4 rounded-lg bg-zinc-900/80 border border-zinc-800 flex items-start gap-4">
-              <div className="p-2.5 rounded-lg bg-amber-950/60 text-amber-300 border border-amber-800/40">
-                <Ghost className="w-6 h-6" />
+              <div className="p-2.5 rounded-lg bg-pink-950/40 text-pink-400 border border-pink-800/40">
+                <Music2 className="w-6 h-6" />
               </div>
               <div className="flex-1">
                 <span className="text-xs uppercase tracking-wider text-zinc-400 font-semibold block">
-                  Snapchat
+                  TikTok
                 </span>
                 <span className="text-base sm:text-lg font-mono font-bold text-zinc-100">
-                  @{SNAPCHAT_USERNAME}
+                  @{TIKTOK_USERNAME}
                 </span>
                 <p className="text-xs text-zinc-400 mt-0.5">
-                  Direct message us on Snapchat for quick orders and inquiries
+                  Follow us & direct message on TikTok for new drops, videos and quick orders
                 </p>
               </div>
             </div>
@@ -131,14 +131,14 @@ export const ContactPage: React.FC = () => {
             </a>
 
             <a
-              id="contact-snapchat-btn"
-              href={SNAPCHAT_URL}
+              id="contact-tiktok-btn"
+              href={TIKTOK_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-lg bg-[#FFFC00] hover:bg-yellow-300 text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all shadow-md shadow-yellow-500/20"
+              className="w-full py-3 px-4 rounded-lg bg-black hover:bg-zinc-900 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-pink-500/50 hover:border-pink-500 transition-all shadow-md shadow-pink-950/20"
             >
-              <Ghost className="w-4 h-4 text-black" />
-              <span>Chat on Snapchat (@{SNAPCHAT_USERNAME})</span>
+              <Music2 className="w-4 h-4 text-pink-400" />
+              <span>Follow & DM on TikTok (@{TIKTOK_USERNAME})</span>
               <ExternalLink className="w-3.5 h-3.5 opacity-80" />
             </a>
 

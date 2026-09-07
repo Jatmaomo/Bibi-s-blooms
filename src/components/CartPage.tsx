@@ -3,7 +3,7 @@ import { CartItem, PageView } from '../types';
 import {
   formatNaira,
   WHATSAPP_PHONE,
-  SNAPCHAT_USERNAME,
+  TIKTOK_USERNAME,
   OrderChannel,
   dispatchOrder,
 } from '../lib/formatters';
@@ -18,7 +18,7 @@ import {
   ShieldCheck,
   CheckCircle2,
   MapPin,
-  Ghost,
+  Music2,
 } from 'lucide-react';
 
 interface CartPageProps {
@@ -284,7 +284,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                   />
                 </div>
 
-                {/* Choose Order Channel: WhatsApp or Snapchat */}
+                {/* Choose Order Channel: WhatsApp or TikTok */}
                 <div className="pt-2">
                   <label className="block text-[11px] uppercase tracking-wider font-semibold text-zinc-300 mb-2">
                     Send Order Directly To
@@ -319,28 +319,28 @@ export const CartPage: React.FC<CartPageProps> = ({
 
                     <button
                       type="button"
-                      onClick={() => setOrderChannel('snapchat')}
+                      onClick={() => setOrderChannel('tiktok')}
                       className={`p-3 rounded-lg border text-left flex flex-col gap-1 transition-all cursor-pointer ${
-                        orderChannel === 'snapchat'
-                          ? 'bg-amber-950/40 border-amber-400 text-white shadow-sm'
+                        orderChannel === 'tiktok'
+                          ? 'bg-pink-950/40 border-pink-500 text-white shadow-sm'
                           : 'bg-zinc-900/80 border-zinc-800 text-zinc-400 hover:border-zinc-700'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold flex items-center gap-1.5 text-white">
-                          <Ghost
+                          <Music2
                             className={`w-3.5 h-3.5 ${
-                              orderChannel === 'snapchat' ? 'text-amber-300' : 'text-zinc-400'
+                              orderChannel === 'tiktok' ? 'text-pink-400' : 'text-zinc-400'
                             }`}
                           />
-                          Snapchat
+                          TikTok
                         </span>
-                        {orderChannel === 'snapchat' && (
-                          <span className="w-2 h-2 rounded-full bg-amber-400"></span>
+                        {orderChannel === 'tiktok' && (
+                          <span className="w-2 h-2 rounded-full bg-pink-400"></span>
                         )}
                       </div>
                       <span className="text-[10px] text-zinc-400 truncate">
-                        @{SNAPCHAT_USERNAME}
+                        @{TIKTOK_USERNAME}
                       </span>
                     </button>
                   </div>
@@ -349,8 +349,8 @@ export const CartPage: React.FC<CartPageProps> = ({
 
               {/* Status Notification Toast */}
               {statusNotification && (
-                <div className="p-3 bg-amber-950/60 border border-amber-500/50 rounded-lg text-amber-200 text-xs flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                <div className="p-3 bg-pink-950/60 border border-pink-500/50 rounded-lg text-pink-200 text-xs flex items-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 text-pink-400 flex-shrink-0" />
                   <span>{statusNotification}</span>
                 </div>
               )}
@@ -361,7 +361,7 @@ export const CartPage: React.FC<CartPageProps> = ({
                 className={`w-full py-4 px-4 rounded-lg font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg transition-transform hover:-translate-y-0.5 cursor-pointer ${
                   orderChannel === 'whatsapp'
                     ? 'bg-emerald-500 hover:bg-emerald-400 text-black shadow-emerald-500/20'
-                    : 'bg-[#FFFC00] hover:bg-yellow-300 text-black shadow-yellow-400/20'
+                    : 'bg-black hover:bg-zinc-900 text-white border border-pink-500/60 shadow-pink-950/30'
                 }`}
               >
                 {orderChannel === 'whatsapp' ? (
@@ -371,8 +371,8 @@ export const CartPage: React.FC<CartPageProps> = ({
                   </>
                 ) : (
                   <>
-                    <Ghost className="w-4 h-4 text-black" />
-                    <span>CHECKOUT ON SNAPCHAT</span>
+                    <Music2 className="w-4 h-4 text-pink-400" />
+                    <span>CHECKOUT ON TIKTOK</span>
                   </>
                 )}
               </button>
@@ -380,7 +380,7 @@ export const CartPage: React.FC<CartPageProps> = ({
               <p className="text-[11px] text-zinc-400 text-center leading-relaxed">
                 {orderChannel === 'whatsapp'
                   ? `Clicking checkout opens WhatsApp directly with Bibi (${WHATSAPP_PHONE}) with your order prefilled.`
-                  : `Clicking checkout copies your order details to clipboard and opens Bibi's Snapchat (@${SNAPCHAT_USERNAME}).`}
+                  : `Clicking checkout copies your order details to clipboard and opens Bibi's TikTok (@${TIKTOK_USERNAME}).`}
               </p>
 
               {/* Assurance Trust Badges */}

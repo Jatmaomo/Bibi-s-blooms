@@ -1,12 +1,12 @@
 import React from 'react';
 import { PageView } from '../types';
 import { Logo } from './Logo';
-import { MessageCircle, Mail, Shield, ArrowUp, Ghost } from 'lucide-react';
+import { MessageCircle, Mail, Shield, ArrowUp, Music2 } from 'lucide-react';
 import {
   WHATSAPP_PHONE,
   WHATSAPP_INTL,
-  SNAPCHAT_URL,
-  SNAPCHAT_USERNAME,
+  TIKTOK_URL,
+  TIKTOK_USERNAME,
   CONTACT_EMAIL,
 } from '../lib/formatters';
 
@@ -52,13 +52,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenSetup }) => {
                 <span>WhatsApp: {WHATSAPP_PHONE}</span>
               </a>
               <a
-                href={SNAPCHAT_URL}
+                href={TIKTOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 transition-colors hover:border-pink-500/50"
               >
-                <Ghost className="w-3.5 h-3.5 text-amber-300" />
-                <span>Snapchat: @{SNAPCHAT_USERNAME}</span>
+                <Music2 className="w-3.5 h-3.5 text-pink-400" />
+                <span>TikTok: @{TIKTOK_USERNAME}</span>
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}

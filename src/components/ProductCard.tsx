@@ -5,9 +5,9 @@ import {
   getWhatsAppOrderUrl,
   buildProductOrderMessage,
   dispatchOrder,
-  SNAPCHAT_USERNAME,
+  TIKTOK_USERNAME,
 } from '../lib/formatters';
-import { Eye, MessageCircle, Sparkles, ShoppingBag, Ghost } from 'lucide-react';
+import { Eye, MessageCircle, Sparkles, ShoppingBag, Music2 } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -36,7 +36,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     imageUrl: product.image_url,
   });
 
-  const handleSnapchatOrder = (e: React.MouseEvent) => {
+  const handleTikTokOrder = (e: React.MouseEvent) => {
     e.stopPropagation();
     const message = buildProductOrderMessage({
       name: product.name,
@@ -45,7 +45,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       category: product.category,
       sizes: product.sizes,
     });
-    dispatchOrder('snapchat', message);
+    dispatchOrder('tiktok', message);
   };
 
   const handleAdd = (e: React.MouseEvent) => {
@@ -195,11 +195,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </a>
 
             <button
-              onClick={handleSnapchatOrder}
-              className="p-2 text-amber-300 hover:text-amber-200 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 rounded transition-colors"
-              title={`Quick Order via Snapchat (@${SNAPCHAT_USERNAME})`}
+              onClick={handleTikTokOrder}
+              className="p-2 text-pink-400 hover:text-pink-300 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-pink-500/50 rounded transition-colors"
+              title={`Quick Order via TikTok (@${TIKTOK_USERNAME})`}
             >
-              <Ghost className="w-4 h-4" />
+              <Music2 className="w-4 h-4" />
             </button>
           </div>
         </div>

@@ -11,12 +11,14 @@ export function formatNaira(amount: number): string {
 
 export const WHATSAPP_PHONE = '07054022430';
 export const WHATSAPP_INTL = '2347054022430';
-export const SNAPCHAT_URL =
-  'https://www.snapchat.com/add/bibisblooms26?share_id=XC6SWF85RQyb9OcqUSYLjw&locale=en_NG';
-export const SNAPCHAT_USERNAME = 'bibisblooms26';
+export const TIKTOK_URL =
+  'https://www.tiktok.com/@bibisbloomsboutique?_r=1&_t=ZS-99WzXrpZujM';
+export const TIKTOK_USERNAME = 'bibisbloomsboutique';
+export const SNAPCHAT_URL = TIKTOK_URL; // legacy alias
+export const SNAPCHAT_USERNAME = TIKTOK_USERNAME; // legacy alias
 export const CONTACT_EMAIL = 'bisolahassan2022@gmail.com';
 
-export type OrderChannel = 'whatsapp' | 'snapchat';
+export type OrderChannel = 'whatsapp' | 'tiktok';
 
 export interface WhatsAppOrderProduct {
   name: string;
@@ -104,9 +106,9 @@ export function getWhatsAppOrderUrl(
 }
 
 /**
- * Dispatch an order to either WhatsApp or Snapchat based on customer selection.
+ * Dispatch an order to either WhatsApp or TikTok based on customer selection.
  * - WhatsApp: Opens direct chat with prefilled order text.
- * - Snapchat: Copies order text to clipboard and opens Bibi's Snapchat profile.
+ * - TikTok: Copies order text to clipboard and opens Bibi's TikTok profile / DM.
  */
 export async function dispatchOrder(
   channel: OrderChannel,
@@ -124,9 +126,9 @@ export async function dispatchOrder(
       // Ignore clipboard fallback
     }
     if (onNotice) {
-      onNotice("Order details copied to clipboard! Paste directly in Bibi's Snapchat chat.");
+      onNotice(`Order details copied to clipboard! Paste directly in Bibi's TikTok DM (@${TIKTOK_USERNAME}).`);
     }
-    window.open(SNAPCHAT_URL, '_blank');
+    window.open(TIKTOK_URL, '_blank');
   }
 }
 
