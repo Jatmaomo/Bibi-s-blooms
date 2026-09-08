@@ -1,6 +1,6 @@
 import React from 'react';
 import { Logo } from './Logo';
-import { Sparkles, CheckCircle2, MessageCircle } from 'lucide-react';
+import { Sparkles, Layers, Truck, MessageCircle } from 'lucide-react';
 import { WHATSAPP_INTL } from '../lib/formatters';
 
 export const AboutPage: React.FC = () => {
@@ -44,26 +44,26 @@ export const AboutPage: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-zinc-800/80">
           <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800 flex flex-col items-center text-center">
-            <CheckCircle2 className="w-6 h-6 text-[#c5a059] mb-2" />
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Quality</h3>
-            <p className="text-xs text-zinc-400 mt-1">
-              Carefully chosen premium fabrics and resilient craftsmanship.
+            <Layers className="w-6 h-6 text-[#c5a059] mb-2" />
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">VARIETY</h3>
+            <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
+              Tops, round necks, trousers, baggy jeans, shoes, slides and waist watches all in one place.
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800 flex flex-col items-center text-center">
             <Sparkles className="w-6 h-6 text-[#c5a059] mb-2" />
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Style</h3>
-            <p className="text-xs text-zinc-400 mt-1">
-              Contemporary cuts honoring timeless traditional aesthetics.
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">STYLE</h3>
+            <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
+              Easy-to-wear pieces and accessories to help you put a clean fit together.
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-zinc-900/60 border border-zinc-800 flex flex-col items-center text-center">
-            <CheckCircle2 className="w-6 h-6 text-[#c5a059] mb-2" />
-            <h3 className="text-sm font-bold uppercase tracking-wider text-white">Confidence</h3>
-            <p className="text-xs text-zinc-400 mt-1">
-              Impeccable fits that instill commanding poise and dignity.
+            <Truck className="w-6 h-6 text-[#c5a059] mb-2" />
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white">CONVENIENCE</h3>
+            <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
+              Shop what you love, place your order and get your pieces delivered to you.
             </p>
           </div>
         </div>

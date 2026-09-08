@@ -144,14 +144,14 @@ export const ReviewsPage: React.FC = () => {
           </span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-luxury text-white tracking-wider">
-          CUSTOMER REVIEWS
+          WHAT OUR CUSTOMERS ARE SAYING
         </h1>
-        <p className="text-sm sm:text-base text-zinc-400 mt-2 max-w-2xl">
-          Authentic feedback from gentlemen wearing{' '}
+        <p className="text-sm sm:text-base text-zinc-300 mt-2 max-w-2xl">
+          Real reviews from gentlemen who shop and wear{' '}
           <span className="text-[#c5a059] font-bold">
             Bibi&apos;s Blooms
-          </span>{' '}
-          luxury ready-to-wear menswear. All pieces are ready-made garments ready for prompt delivery.
+          </span>
+          .
         </p>
         <div className="w-20 h-0.5 bg-[#c5a059] mt-4" />
       </div>

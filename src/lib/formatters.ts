@@ -106,6 +106,55 @@ export function getWhatsAppOrderUrl(
 }
 
 /**
+ * Bulletproof copy to clipboard supporting modern API and execCommand fallback
+ */
+export async function copyToClipboard(text: string): Promise<boolean> {
+  try {
+    if (navigator?.clipboard?.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (err) {
+    console.warn('Navigator clipboard failed, attempting fallback', err);
+  }
+
+  try {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-9999px';
+    textArea.style.top = '-9999px';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    const successful = document.execCommand('copy');
+    document.body.removeChild(textArea);
+    return successful;
+  } catch (err) {
+    console.error('Fallback clipboard copy failed:', err);
+    return false;
+  }
+}
+
+/**
+ * Safely open external URLs in new tab with popup fallback
+ */
+export function openExternalUrl(url: string): void {
+  const win = window.open(url, '_blank', 'noopener,noreferrer');
+  if (!win || win.closed || typeof win.closed === 'undefined') {
+    // Popup was blocked or restricted; trigger virtual anchor tag click
+    const a = document.createElement('a');
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+}
+
+/**
  * Dispatch an order to either WhatsApp or TikTok based on customer selection.
  * - WhatsApp: Opens direct chat with prefilled order text.
  * - TikTok: Copies order text to clipboard and opens Bibi's TikTok profile / DM.
@@ -116,19 +165,14 @@ export async function dispatchOrder(
   onNotice?: (msg: string) => void
 ): Promise<void> {
   if (channel === 'whatsapp') {
-    window.open(`https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(orderMessage)}`, '_blank');
+    const url = `https://wa.me/${WHATSAPP_INTL}?text=${encodeURIComponent(orderMessage)}`;
+    openExternalUrl(url);
   } else {
-    try {
-      if (navigator?.clipboard?.writeText) {
-        await navigator.clipboard.writeText(orderMessage);
-      }
-    } catch {
-      // Ignore clipboard fallback
-    }
+    await copyToClipboard(orderMessage);
     if (onNotice) {
       onNotice(`Order details copied to clipboard! Paste directly in Bibi's TikTok DM (@${TIKTOK_USERNAME}).`);
     }
-    window.open(TIKTOK_URL, '_blank');
+    openExternalUrl(TIKTOK_URL);
   }
 }
 

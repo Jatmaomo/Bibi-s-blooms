@@ -35,8 +35,23 @@ export default function App() {
   // Selected Product for Details Modal
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
-  // Simple Cart State
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  // Persistent Cart State across page reloads and browsing sessions
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('bibis_blooms_cart');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('bibis_blooms_cart', JSON.stringify(cartItems));
+    } catch (e) {
+      console.warn('Unable to persist cart to localStorage', e);
+    }
+  }, [cartItems]);
 
   // Initialize and Subscribe to Firestore in Real Time
   useEffect(() => {
@@ -253,7 +268,7 @@ export default function App() {
                     className="w-full sm:w-auto px-6 py-3.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 text-zinc-200 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors"
                   >
                     <Star className="w-4 h-4 text-[#c5a059] fill-[#c5a059]" />
-                    <span>Read Customer Reviews</span>
+                    <span>What Our Customers Are Saying</span>
                   </button>
                 </div>
               </div>

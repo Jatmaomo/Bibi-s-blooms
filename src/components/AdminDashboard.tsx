@@ -272,7 +272,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     }
   };
 
-  // Handle File Change with base64 conversion
+  // Handle File Change with client-side canvas compression to ensure optimal speed & Firestore safety
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -280,9 +280,43 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
       const reader = new FileReader();
       reader.onload = (uploadEvent) => {
-        const result = uploadEvent.target?.result as string;
-        setImagePreview(result);
-        setFormImageUrl(result);
+        const rawData = uploadEvent.target?.result as string;
+
+        // Auto-scale large photos for instant load times and safe document size
+        const img = new Image();
+        img.onload = () => {
+          const maxDim = 1200;
+          let { width, height } = img;
+
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0, width, height);
+            const compressed = canvas.toDataURL('image/jpeg', 0.85);
+            setImagePreview(compressed);
+            setFormImageUrl(compressed);
+          } else {
+            setImagePreview(rawData);
+            setFormImageUrl(rawData);
+          }
+        };
+        img.onerror = () => {
+          setImagePreview(rawData);
+          setFormImageUrl(rawData);
+        };
+        img.src = rawData;
       };
       reader.readAsDataURL(file);
     }

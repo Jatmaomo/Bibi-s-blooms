@@ -166,18 +166,13 @@ export const FALLBACK_PRODUCTS: Product[] = STARTER_PRODUCTS.map((item, idx) => 
   updated_at: new Date(Date.now() - idx * 3600000).toISOString(),
 }));
 
-// Seed initial products into Firestore (Authorized for authenticated admins only)
+// Seed initial products into Firestore
 export async function seedProductsIfEmpty(): Promise<boolean> {
-  // Only authenticated admins are permitted by Firestore Security Rules to write
-  if (!auth.currentUser) {
-    return false;
-  }
-
   try {
     const productsRef = collection(db, 'products');
     const snapshot = await getDocs(productsRef);
     if (snapshot.empty) {
-      console.log('Seeding initial Bibi\'s Blooms catalog into Firestore as authenticated admin...');
+      console.log('Seeding initial Bibi\'s Blooms catalog into Firestore...');
       const batch = writeBatch(db);
       for (const item of STARTER_PRODUCTS) {
         const newDocRef = doc(productsRef);
@@ -228,12 +223,10 @@ export function subscribeToProducts(
         });
       });
 
-      // If Firestore currently has 0 items (e.g. before initial admin seed),
-      // provide the rich starter catalog to ensure public visitors see items immediately
+      // If Firestore currently has 0 items (e.g. on first app launch),
+      // seed the rich starter catalog and ensure public visitors see items immediately
       if (list.length === 0) {
-        if (auth.currentUser) {
-          seedProductsIfEmpty();
-        }
+        seedProductsIfEmpty();
         onUpdate(FALLBACK_PRODUCTS);
       } else {
         onUpdate(list);
@@ -254,15 +247,13 @@ export async function getProductsFromFirestore(): Promise<Product[]> {
     const snapshot = await getDocs(productsRef);
 
     if (snapshot.empty) {
-      if (auth.currentUser) {
-        await seedProductsIfEmpty();
-        const refetched = await getDocs(productsRef);
-        if (!refetched.empty) {
-          return refetched.docs.map((d) => ({
-            id: d.id,
-            ...(d.data() as any),
-          }));
-        }
+      await seedProductsIfEmpty();
+      const refetched = await getDocs(productsRef);
+      if (!refetched.empty) {
+        return refetched.docs.map((d) => ({
+          id: d.id,
+          ...(d.data() as any),
+        }));
       }
       return FALLBACK_PRODUCTS;
     }

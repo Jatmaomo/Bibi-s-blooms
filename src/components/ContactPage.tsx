@@ -43,12 +43,8 @@ export const ContactPage: React.FC = () => {
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-luxury text-white tracking-wider">
           GET IN TOUCH
         </h1>
-        <p className="text-sm text-zinc-400 mt-2 max-w-md">
-          Reach out directly to{' '}
-          <span className="text-[#c5a059] font-bold">
-            Bibi&apos;s Blooms
-          </span>{' '}
-          to shop for ready-to-wear wears, ask about available sizes, or arrange delivery.
+        <p className="text-sm text-zinc-300 mt-2 max-w-lg leading-relaxed">
+          Ready to shop? Send Bibi a message to place your order, check available sizes, ask questions or make a delivery enquiry.
         </p>
         <div className="w-16 h-0.5 bg-[#c5a059] mt-4" />
       </div>
