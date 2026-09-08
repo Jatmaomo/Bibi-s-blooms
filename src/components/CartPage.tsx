@@ -95,7 +95,7 @@ export const CartPage: React.FC<CartPageProps> = ({
             Shopping Cart
           </h1>
           <p className="text-xs sm:text-sm text-zinc-400 mt-1">
-            Review your selected ready-to-wear menswear pieces before direct checkout on WhatsApp or TikTok.
+            Review your selection before completing your order with us.
           </p>
         </div>
 

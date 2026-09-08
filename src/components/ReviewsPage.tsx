@@ -140,7 +140,7 @@ export const ReviewsPage: React.FC = () => {
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[#c5a059]/40 bg-[#c5a059]/10 mb-3">
           <Sparkles className="w-3.5 h-3.5 text-[#c5a059]" />
           <span className="text-xs font-semibold uppercase tracking-widest text-[#c5a059]">
-            Client Experiences &amp; Praise
+            The Bibi&apos;s Blooms Experience
           </span>
         </div>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-luxury text-white tracking-wider">
