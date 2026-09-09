@@ -42,7 +42,7 @@ export const ProductDetailsModal: React.FC<ProductDetailsModalProps> = ({
   const [orderNotification, setOrderNotification] = useState<string | null>(null);
 
   const fallbackImage =
-    'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800&auto=format&fit=crop';
+    'https://i.postimg.cc/26BVc637/IMG-20260904-WA0000.jpg';
 
   const handleDirectOrder = () => {
     const message = buildProductOrderMessage({

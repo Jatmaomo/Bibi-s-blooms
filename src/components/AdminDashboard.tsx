@@ -13,7 +13,6 @@ import {
   signUpAdmin,
   signOutAdmin,
   subscribeToAdminAuth,
-  seedProductsIfEmpty,
 } from '../lib/firebase';
 import { formatNaira } from '../lib/formatters';
 import {
@@ -116,13 +115,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     const unsubscribe = subscribeToAdminAuth((user) => {
       setCurrentUser(user);
       setAuthLoading(false);
-      if (user) {
-        seedProductsIfEmpty().then((seeded) => {
-          if (seeded) {
-            onRefreshProducts();
-          }
-        });
-      }
     });
 
     return () => unsubscribe();
@@ -139,14 +131,12 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         const user = await signInAdmin(authEmail.trim(), authPassword);
         setCurrentUser(user);
         showNotification('Welcome back to Bibi\'s Blooms Admin!');
-        await seedProductsIfEmpty();
         await onRefreshProducts();
       } else {
         const user = await signUpAdmin(authEmail.trim(), authPassword);
         setCurrentUser(user);
         setAuthSuccess('Admin account registered successfully in Firebase!');
         showNotification('Admin account created.');
-        await seedProductsIfEmpty();
         await onRefreshProducts();
       }
     } catch (err: any) {
@@ -198,8 +188,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         }
       }
 
-      // Check and seed starter catalog if empty so admin has items to manage
-      await seedProductsIfEmpty();
+      // Refresh live inventory
       await onRefreshProducts();
 
       // Persist unlocked session
@@ -743,19 +732,14 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
           {isAuthorized && (
             <button
               onClick={async () => {
-                const seeded = await seedProductsIfEmpty();
-                if (seeded) {
-                  showNotification('Starter catalog seeded to Firestore!');
-                  await onRefreshProducts();
-                } else {
-                  showNotification('Firestore catalog is ready.');
-                }
+                await onRefreshProducts();
+                showNotification('Firestore catalog synchronized.', 'success');
               }}
               className="px-3.5 py-2.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors"
-              title="Populate or verify starter menswear catalog in Firestore"
+              title="Synchronize live inventory from Firestore"
             >
               <Database className="w-3.5 h-3.5 text-[#c5a059]" />
-              <span>Seed Catalog</span>
+              <span>Sync Catalog</span>
             </button>
           )}
         </div>
@@ -814,7 +798,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             (e.target as HTMLImageElement).src =
-                              'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800';
+                              'https://i.postimg.cc/26BVc637/IMG-20260904-WA0000.jpg';
                           }}
                           referrerPolicy="no-referrer"
                         />

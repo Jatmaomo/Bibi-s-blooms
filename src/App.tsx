@@ -3,7 +3,6 @@ import { PageView, Product, CartItem } from './types';
 import {
   subscribeToProducts,
   testConnection,
-  seedProductsIfEmpty,
   getProductsFromFirestore,
 } from './lib/firebase';
 import { Navbar } from './components/Navbar';
@@ -158,7 +157,7 @@ export default function App() {
   // Filter featured products for Home Page
   const featuredProducts = products.filter((p) => p.featured);
   const displayFeatured =
-    featuredProducts.length > 0 ? featuredProducts : products.slice(0, 3);
+    featuredProducts.length > 0 ? featuredProducts : products.slice(0, 6);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0b0c10] text-[#f3f4f6]">

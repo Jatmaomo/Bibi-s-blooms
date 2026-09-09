@@ -55,145 +55,8 @@ export async function testConnection(): Promise<boolean> {
   }
 }
 
-// Initial Starter Products for Bibi's Blooms
-export const STARTER_PRODUCTS: Omit<Product, 'id'>[] = [
-  {
-    name: 'Heavyweight Graphic Luxury Roundneck',
-    description:
-      'Good-quality 280GSM combed cotton roundneck tee. Pre-shrunk, ultra-soft, clean everyday cut designed to elevate any casual look.',
-    price: 18000,
-    category: 'Roundnecks',
-    image_url:
-      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
-    sizes: ['M', 'L', 'XL', 'XXL'],
-    featured: true,
-  },
-  {
-    name: 'Signature Mercerized Pique Polo',
-    description:
-      'Premium breathable pique cotton polo with structured ribbed collar, mother-of-pearl buttons, and ribbed cuffs for the handsome gentleman.',
-    price: 24000,
-    category: 'Polos',
-    image_url:
-      'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?q=80&w=800&auto=format&fit=crop',
-    sizes: ['M', 'L', 'XL', 'XXL'],
-    featured: true,
-  },
-  {
-    name: 'Vintage Wash Relaxed Baggy Jeans',
-    description:
-      'High-grade heavyweight denim in authentic vintage stone wash. Relaxed baggy cut through thigh and ankle with heavy-duty rivets and durable pocketing.',
-    price: 35000,
-    category: 'Baggy Jeans',
-    image_url:
-      'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?q=80&w=800&auto=format&fit=crop',
-    sizes: ['30', '32', '34', '36', '38'],
-    featured: true,
-  },
-  {
-    name: 'Embroidered Bibi Suede Trucker Cap',
-    description:
-      'Refined suede curved visor cap featuring intricate tonal embroidery, metal buckle adjustment, and sweatband lining.',
-    price: 15000,
-    category: 'Caps',
-    image_url:
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop',
-    sizes: ['One Size'],
-    featured: true,
-  },
-  {
-    name: 'Handcrafted Ergonomic Leather Slides',
-    description:
-      'Supple genuine leather slide sandals with contoured orthopedic footbed and non-slip rubber tread. Effortless everyday luxury.',
-    price: 26000,
-    category: 'Slides',
-    image_url:
-      'https://images.unsplash.com/photo-1603808033192-082d6919d3e1?q=80&w=800&auto=format&fit=crop',
-    sizes: ['40', '41', '42', '43', '44', '45'],
-    featured: true,
-  },
-  {
-    name: 'Executive Chronograph Onyx Wristwatch',
-    description:
-      'Stainless steel casing with scratch-resistant sapphire crystal face and precision quartz chronograph movement. Water resistant.',
-    price: 48000,
-    category: 'Wristwatches',
-    image_url:
-      'https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=800&auto=format&fit=crop',
-    sizes: ['Standard'],
-    featured: true,
-  },
-  {
-    name: 'Tactical Leather Everyday Cross Bag',
-    description:
-      'Durable textured leather cross-body bag with multiple zippered utility compartments, padded shoulder strap, and polished dark hardware.',
-    price: 28000,
-    category: 'Cross Bags',
-    image_url:
-      'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=800&auto=format&fit=crop',
-    sizes: ['Standard'],
-    featured: true,
-  },
-  {
-    name: 'Minimalist Signature Snapback Cap',
-    description:
-      'Structured 6-panel premium cotton twill cap with embroidered monogram and brass clasp closure.',
-    price: 18000,
-    category: 'Caps',
-    image_url:
-      'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800&auto=format&fit=crop',
-    sizes: ['Standard'],
-    featured: true,
-  },
-  {
-    name: 'Oversized Washed Graphic Roundneck Tee',
-    description:
-      'Vintage acid-washed heavyweight tee with relaxed drop shoulders and soft combed finish.',
-    price: 24000,
-    category: 'Roundnecks',
-    image_url:
-      'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800&auto=format&fit=crop',
-    sizes: ['M', 'L', 'XL', 'XXL'],
-    featured: false,
-  },
-];
-
-// Curated Fallback Products for Bibi's Blooms
-export const FALLBACK_PRODUCTS: Product[] = STARTER_PRODUCTS.map((item, idx) => ({
-  ...item,
-  id: `catalog-item-${idx + 1}`,
-  created_at: new Date(Date.now() - idx * 3600000).toISOString(),
-  updated_at: new Date(Date.now() - idx * 3600000).toISOString(),
-}));
-
-// Seed initial products into Firestore
-export async function seedProductsIfEmpty(): Promise<boolean> {
-  try {
-    const productsRef = collection(db, 'products');
-    const snapshot = await getDocs(productsRef);
-    if (snapshot.empty) {
-      console.log('Seeding initial Bibi\'s Blooms catalog into Firestore...');
-      const batch = writeBatch(db);
-      for (const item of STARTER_PRODUCTS) {
-        const newDocRef = doc(productsRef);
-        batch.set(newDocRef, {
-          ...item,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString(),
-        });
-      }
-      await batch.commit();
-      console.log('Firestore products seeded successfully.');
-      return true;
-    }
-    return false;
-  } catch (err: any) {
-    console.warn('Notice while checking/seeding Firestore products:', err?.message || err);
-    return false;
-  }
-}
-
 // Subscribe to Products in Real Time via Firestore onSnapshot
+// Exclusively reflects authentic products uploaded and managed by the admin in Firestore
 export function subscribeToProducts(
   onUpdate: (products: Product[]) => void,
   onError?: (err: Error) => void
@@ -215,26 +78,18 @@ export function subscribeToProducts(
           category: data.category || 'Other',
           image_url:
             data.image_url ||
-            'https://images.unsplash.com/photo-1617137984095-74e4e5e3613f?q=80&w=800',
-          sizes: Array.isArray(data.sizes) ? data.sizes : ['M', 'L', 'XL'],
+            'https://i.postimg.cc/26BVc637/IMG-20260904-WA0000.jpg',
+          sizes: Array.isArray(data.sizes) ? data.sizes : [],
           featured: Boolean(data.featured),
           created_at: data.created_at || new Date().toISOString(),
           updated_at: data.updated_at || new Date().toISOString(),
         });
       });
 
-      // If Firestore currently has 0 items (e.g. on first app launch),
-      // seed the rich starter catalog and ensure public visitors see items immediately
-      if (list.length === 0) {
-        seedProductsIfEmpty();
-        onUpdate(FALLBACK_PRODUCTS);
-      } else {
-        onUpdate(list);
-      }
+      onUpdate(list);
     },
     (err) => {
       console.warn('Firestore Realtime notice:', err);
-      onUpdate(FALLBACK_PRODUCTS);
       if (onError) onError(err);
     }
   );
@@ -246,25 +101,13 @@ export async function getProductsFromFirestore(): Promise<Product[]> {
     const productsRef = collection(db, 'products');
     const snapshot = await getDocs(productsRef);
 
-    if (snapshot.empty) {
-      await seedProductsIfEmpty();
-      const refetched = await getDocs(productsRef);
-      if (!refetched.empty) {
-        return refetched.docs.map((d) => ({
-          id: d.id,
-          ...(d.data() as any),
-        }));
-      }
-      return FALLBACK_PRODUCTS;
-    }
-
     return snapshot.docs.map((d) => ({
       id: d.id,
       ...(d.data() as any),
     }));
   } catch (err) {
-    console.warn('Failed to get products from Firestore, providing fallback catalog:', err);
-    return FALLBACK_PRODUCTS;
+    console.warn('Failed to get products from Firestore:', err);
+    return [];
   }
 }
 
