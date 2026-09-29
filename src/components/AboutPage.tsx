@@ -47,7 +47,7 @@ export const AboutPage: React.FC = () => {
             <Layers className="w-6 h-6 text-[#c5a059] mb-2" />
             <h3 className="text-sm font-bold uppercase tracking-wider text-white">VARIETY</h3>
             <p className="text-xs text-zinc-300 mt-1 leading-relaxed">
-              Tops, round necks, trousers, baggy jeans, shoes, slides and waist watches all in one place.
+              Tops, round necks, polos, baggy jeans, duvets, shoes, slides, wristwatches and cross bags all in one place.
             </p>
           </div>
 

@@ -10,6 +10,8 @@ interface ShopPageProps {
   onRefresh: () => void;
   isLive: boolean;
   onAddToCart?: (product: Product, size?: string) => void;
+  activeCategory?: string;
+  onSelectCategory?: (category: string) => void;
 }
 
 export const ShopPage: React.FC<ShopPageProps> = ({
@@ -19,8 +21,20 @@ export const ShopPage: React.FC<ShopPageProps> = ({
   onRefresh,
   isLive,
   onAddToCart,
+  activeCategory,
+  onSelectCategory,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [internalCategory, setInternalCategory] = useState<string>('All');
+  const selectedCategory = activeCategory !== undefined ? activeCategory : internalCategory;
+
+  const handleCategoryChange = (cat: string) => {
+    if (onSelectCategory) {
+      onSelectCategory(cat);
+    } else {
+      setInternalCategory(cat);
+    }
+  };
+
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [sortBy, setSortBy] = useState<'featured' | 'price-asc' | 'price-desc' | 'newest'>('featured');
 
@@ -28,7 +42,11 @@ export const ShopPage: React.FC<ShopPageProps> = ({
     return products
       .filter((product) => {
         const matchesCategory =
-          selectedCategory === 'All' || product.category === selectedCategory;
+          selectedCategory === 'All' ||
+          product.category === selectedCategory ||
+          (selectedCategory === 'Duvet' &&
+            (product.category === 'Duvet' ||
+              product.category.toLowerCase().includes('duvet')));
         const matchesSearch =
           product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
           product.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -62,7 +80,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
             Shop <span className="text-[#c5a059] drop-shadow-[0_0_15px_rgba(197,160,89,0.6)] [text-shadow:0_0_20px_rgba(197,160,89,0.4)]">Bibi&apos;s Blooms</span>
           </h1>
           <p className="text-sm text-zinc-400 mt-2 max-w-xl">
-            Good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury wears. Ready for immediate dispatch.
+            Good-quality roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury duvets. Ready for immediate dispatch.
           </p>
         </div>
 
@@ -91,7 +109,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
           <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
           <input
             type="text"
-            placeholder="Search roundnecks, polos, baggy jeans, caps..."
+            placeholder="Search roundnecks, polos, baggy jeans, duvets, caps..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-10 pr-9 py-2.5 bg-[#121318] border border-zinc-800 hover:border-zinc-700 focus:border-[#c5a059] rounded-lg text-sm text-white placeholder-zinc-500 focus:outline-none transition-colors"
@@ -126,7 +144,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
       {/* Category Pills */}
       <div className="mt-6 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
         <button
-          onClick={() => setSelectedCategory('All')}
+          onClick={() => handleCategoryChange('All')}
           className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full whitespace-nowrap border transition-all ${
             selectedCategory === 'All'
               ? 'bg-[#c5a059] border-[#c5a059] text-black font-bold shadow-md shadow-[#c5a059]/20'
@@ -137,12 +155,16 @@ export const ShopPage: React.FC<ShopPageProps> = ({
         </button>
 
         {CATEGORIES.map((cat) => {
-          const count = products.filter((p) => p.category === cat).length;
+          const count = products.filter(
+            (p) =>
+              p.category === cat ||
+              (cat === 'Duvet' && (p.category === 'Duvet' || p.category.toLowerCase().includes('duvet')))
+          ).length;
           const isSelected = selectedCategory === cat;
           return (
             <button
               key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              onClick={() => handleCategoryChange(cat)}
               className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase rounded-full whitespace-nowrap border transition-all ${
                 isSelected
                   ? 'bg-[#c5a059] border-[#c5a059] text-black font-bold shadow-md shadow-[#c5a059]/20'
@@ -190,7 +212,7 @@ export const ShopPage: React.FC<ShopPageProps> = ({
               <button
                 onClick={() => {
                   setSearchQuery('');
-                  setSelectedCategory('All');
+                  handleCategoryChange('All');
                 }}
                 className="mt-4 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[#c5a059] border border-[#c5a059]/40 rounded hover:bg-[#c5a059]/10"
               >

@@ -179,7 +179,7 @@ export const ContactPage: React.FC = () => {
                 </label>
                 <textarea
                   rows={4}
-                  placeholder="Describe the ready-to-wear pieces you'd like to order (e.g. Baggy jeans in size 34 and a black polo)..."
+                  placeholder="Describe the pieces you'd like to order (e.g. Baggy jeans in size 34, a black polo, slides, or luxury duvet)..."
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required

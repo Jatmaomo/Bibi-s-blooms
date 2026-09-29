@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { PageView, Product, CartItem } from './types';
+import { PageView, Product, CartItem, CATEGORIES, ProductCategory } from './types';
 import {
   subscribeToProducts,
   testConnection,
@@ -18,12 +18,28 @@ import { FirebaseStatusModal } from './components/FirebaseStatusModal';
 import { CartDrawer } from './components/CartDrawer';
 import { CartPage } from './components/CartPage';
 import { ReviewsPage } from './components/ReviewsPage';
-import { Sparkles, ArrowRight, ShoppingBag, Star, MessageSquare, Truck } from 'lucide-react';
+import {
+  Sparkles,
+  ArrowRight,
+  ShoppingBag,
+  Star,
+  MessageSquare,
+  Truck,
+  Shirt,
+  Crown,
+  Layers,
+  Footprints,
+  Watch,
+  Briefcase,
+  BedDouble,
+  ChevronRight,
+} from 'lucide-react';
 import { WHATSAPP_INTL } from './lib/formatters';
 
 export default function App() {
   // Navigation State
   const [currentPage, setCurrentPage] = useState<PageView>('home');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [isFirebaseStatusOpen, setIsFirebaseStatusOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
@@ -108,8 +124,11 @@ export default function App() {
   }, []);
 
   // Synchronize URL hash when navigating to/from admin
-  const handleNavigate = (page: PageView) => {
+  const handleNavigate = (page: PageView, category?: string) => {
     setCurrentPage(page);
+    if (category !== undefined) {
+      setSelectedCategory(category);
+    }
     if (page === 'admin') {
       window.location.hash = '#admin';
     } else if (window.location.hash === '#admin') {
@@ -117,6 +136,65 @@ export default function App() {
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  // Category metadata for "What We Offer" section
+  const categoryOfferings: {
+    name: ProductCategory;
+    label: string;
+    icon: React.ComponentType<{ className?: string }>;
+    description: string;
+    badge?: string;
+  }[] = [
+    {
+      name: 'Roundnecks',
+      label: 'Roundnecks',
+      icon: Shirt,
+      description: 'Heavyweight ribbed crewnecks & luxury cotton tees',
+    },
+    {
+      name: 'Polos',
+      label: 'Polos',
+      icon: Shirt,
+      description: 'Mercerized knit & textured executive collars',
+    },
+    {
+      name: 'Baggy Jeans',
+      label: 'Baggy Jeans',
+      icon: Layers,
+      description: 'Vintage relaxed wash & wide-leg street silhouettes',
+    },
+    {
+      name: 'Caps',
+      label: 'Caps',
+      icon: Crown,
+      description: 'Structured snapbacks & luxury embroidered headwear',
+    },
+    {
+      name: 'Slides',
+      label: 'Slides',
+      icon: Footprints,
+      description: 'Butter-soft leather & contoured ergonomic comfort',
+    },
+    {
+      name: 'Wristwatches',
+      label: 'Wristwatches',
+      icon: Watch,
+      description: 'Executive chronographs, Hublot, Poedagar & Valenzo timepieces',
+    },
+    {
+      name: 'Cross Bags',
+      label: 'Cross Bags',
+      icon: Briefcase,
+      description: 'Tactile Goyad side bags & compact luxury organizers',
+    },
+    {
+      name: 'Duvet',
+      label: 'Duvets',
+      icon: BedDouble,
+      description: 'Plush hotel-grade duvets, bedroom sets & luxury bedding',
+      badge: 'New',
+    },
+  ];
 
   // Cart operations
   const handleAddToCart = (product: Product, size?: string) => {
@@ -176,6 +254,73 @@ export default function App() {
           <div>
             {/* Hero Section */}
             <Hero onNavigate={handleNavigate} />
+
+            {/* What We Offer / Category Showcase Section */}
+            <section className="border-b border-zinc-800/80 bg-gradient-to-b from-[#0b0c10] via-[#101116] to-[#0b0c10] py-12 sm:py-16">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-zinc-800/80 gap-4">
+                  <div>
+                    <div className="inline-flex items-center gap-2 text-xs uppercase font-bold tracking-widest text-[#c5a059]">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span>THE GENTLEMEN&apos;S ESSENTIALS</span>
+                    </div>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold font-luxury text-white tracking-wide mt-1 uppercase">
+                      WHAT WE OFFER
+                    </h2>
+                    <p className="text-xs sm:text-sm text-zinc-300 mt-1 max-w-xl font-medium leading-relaxed">
+                      Explore our full range of curated items — from everyday essentials, denim, slides, and watches to premium luxury duvets.
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() => handleNavigate('shop', 'All')}
+                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#c5a059] hover:text-[#d6b268] transition-colors self-start md:self-auto cursor-pointer"
+                  >
+                    <span>View All Collections</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* 8 Category Tiles Grid */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+                  {categoryOfferings.map((cat) => {
+                    const Icon = cat.icon;
+                    const count = products.filter(
+                      (p) =>
+                        p.category === cat.name ||
+                        (cat.name === 'Duvet' &&
+                          (p.category === 'Duvet' || p.category.toLowerCase().includes('duvet')))
+                    ).length;
+
+                    return (
+                      <button
+                        key={cat.name}
+                        onClick={() => handleNavigate('shop', cat.name)}
+                        className="group relative flex flex-col items-center text-center p-3.5 sm:p-4 rounded-xl bg-[#121318] hover:bg-[#181920] border border-zinc-800/90 hover:border-[#c5a059]/60 transition-all duration-200 hover:shadow-lg hover:shadow-[#c5a059]/10 cursor-pointer"
+                      >
+                        {cat.badge && (
+                          <span className="absolute top-2 right-2 px-1.5 py-0.2 rounded-full text-[9px] font-bold bg-[#c5a059] text-black uppercase tracking-wider">
+                            {cat.badge}
+                          </span>
+                        )}
+
+                        <div className="w-11 h-11 rounded-lg bg-zinc-900 border border-zinc-800 group-hover:border-[#c5a059]/50 flex items-center justify-center text-[#c5a059] mb-2.5 transition-transform group-hover:scale-110">
+                          <Icon className="w-5 h-5 text-[#c5a059]" />
+                        </div>
+
+                        <span className="text-xs font-bold uppercase tracking-wider text-white group-hover:text-[#c5a059] transition-colors leading-tight">
+                          {cat.label}
+                        </span>
+
+                        <span className="text-[10px] text-zinc-400 mt-1 font-mono">
+                          {count > 0 ? `${count} piece${count > 1 ? 's' : ''}` : 'In Stock'}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
 
             {/* Featured Products Section */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -283,6 +428,8 @@ export default function App() {
             onRefresh={handleRefreshProducts}
             isLive={true}
             onAddToCart={handleAddToCart}
+            activeCategory={selectedCategory}
+            onSelectCategory={setSelectedCategory}
           />
         )}
 

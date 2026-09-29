@@ -5,7 +5,8 @@ export type ProductCategory =
   | 'Caps'
   | 'Slides'
   | 'Wristwatches'
-  | 'Cross Bags';
+  | 'Cross Bags'
+  | 'Duvet';
 
 export const CATEGORIES: ProductCategory[] = [
   'Roundnecks',
@@ -15,9 +16,20 @@ export const CATEGORIES: ProductCategory[] = [
   'Slides',
   'Wristwatches',
   'Cross Bags',
+  'Duvet',
 ];
 
-export const AVAILABLE_SIZES = ['S', 'M', 'L', 'XL', 'XXL'] as const;
+export const AVAILABLE_SIZES = [
+  'S',
+  'M',
+  'L',
+  'XL',
+  'XXL',
+  'Standard',
+  '6x6',
+  '6x7',
+  '7x7',
+] as const;
 export type ProductSize = (typeof AVAILABLE_SIZES)[number];
 
 export interface Product {

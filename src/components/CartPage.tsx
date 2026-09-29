@@ -120,7 +120,7 @@ export const CartPage: React.FC<CartPageProps> = ({
             Your Cart is Currently Empty
           </h2>
           <p className="text-sm text-zinc-400 max-w-md mb-8">
-            You haven&apos;t added any ready-to-wear pieces yet. Browse our collection of roundnecks, polos, baggy jeans, caps, slides, and accessories.
+            You haven&apos;t added any pieces yet. Browse our collection of roundnecks, polos, baggy jeans, caps, slides, wristwatches, cross bags, and luxury duvets.
           </p>
           <button
             onClick={() => onNavigate('shop')}

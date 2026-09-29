@@ -405,7 +405,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
 
   // Filtered Table List
   const tableProducts = products.filter((p) => {
-    const matchesCat = tableCategory === 'All' || p.category === tableCategory;
+    const matchesCat =
+      tableCategory === 'All' ||
+      p.category === tableCategory ||
+      (tableCategory === 'Duvet' &&
+        (p.category === 'Duvet' || p.category.toLowerCase().includes('duvet')));
     const matchesSearch =
       p.name.toLowerCase().includes(tableSearch.toLowerCase()) ||
       p.category.toLowerCase().includes(tableSearch.toLowerCase());

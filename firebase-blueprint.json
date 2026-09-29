@@ -19,7 +19,7 @@
         },
         "category": {
           "type": "string",
-          "description": "Category such as Senator Wear, Agbada, Kaftan, Native Wear, etc."
+          "description": "Category such as Roundnecks, Polos, Baggy Jeans, Caps, Slides, Wristwatches, Cross Bags, Duvet, etc."
         },
         "image_url": {
           "type": "string",
